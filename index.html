@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caio & Giovanna</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #fdf9f6;
+      color: #2c2c2a;
+      min-height: 100vh;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 1.5rem 2.5rem;
+      border-bottom: 0.5px solid #e0d8d0;
+    }
+
+    .names {
+      font-size: 42px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #2c2c2a;
+    }
+
+    .ampersand {
+      color: #b4829e;
+      font-size: 46px;
+      margin: 0 0.5rem;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      margin: 1.25rem 0;
+      color: #b4829e;
+      font-size: 20px;
+    }
+
+    .divider-line {
+      width: 60px;
+      height: 0.5px;
+      background: #b4829e;
+      opacity: 0.5;
+    }
+
+    .date-location {
+      font-size: 14px;
+      color: #888780;
+      font-family: system-ui, sans-serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding: 2.5rem 1.5rem;
+      max-width: 500px;
+      margin: 0 auto;
+      border-bottom: 0.5px solid #e0d8d0;
+    }
+
+    .count-card {
+      background: #f1ece8;
+      border-radius: 8px;
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+
+    .count-number {
+      font-size: 30px;
+      font-weight: 500;
+      color: #2c2c2a;
+      font-family: system-ui, sans-serif;
+    }
+
+    .count-label {
+      font-size: 11px;
+      color: #888780;
+      font-family: system-ui, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    .section {
+      padding: 2.5rem 1.5rem;
+      max-width: 640px;
+      margin: 0 auto;
+      border-bottom: 0.5px solid #e0d8d0;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-family: system-ui, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #b4829e;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .info-card {
+      background: #fff;
+      border: 0.5px solid #e0d8d0;
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .info-icon {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .info-card-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #2c2c2a;
+      font-family: system-ui, sans-serif;
+      margin-bottom: 4px;
+    }
+
+    .info-card-text {
+      font-size: 13px;
+      color: #888780;
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+    }
+
+    .rsvp-section {
+      padding: 2.5rem 1.5rem 3rem;
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .rsvp-title {
+      font-size: 22px;
+      font-weight: 500;
+      color: #2c2c2a;
+      margin-bottom: 0.5rem;
+    }
+
+    .rsvp-sub {
+      font-size: 14px;
+      color: #888780;
+      font-family: system-ui, sans-serif;
+      margin-bottom: 1.75rem;
+    }
+
+    .rsvp-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .rsvp-form input {
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      padding: 10px 14px;
+      border: 0.5px solid #d3d1c7;
+      border-radius: 8px;
+      background: #fff;
+      color: #2c2c2a;
+      outline: none;
+    }
+
+    .rsvp-form input:focus {
+      border-color: #b4829e;
+    }
+
+    .btn-confirm {
+      background: #b4829e;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 11px;
+      font-size: 14px;
+      font-family: system-ui, sans-serif;
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+    }
+
+    .btn-confirm:hover { opacity: 0.88; }
+
+    .footer {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 12px;
+      color: #b4b2a9;
+      font-family: system-ui, sans-serif;
+      letter-spacing: 0.06em;
+      border-top: 0.5px solid #e0d8d0;
+    }
+
+    @media (max-width: 480px) {
+      .names { font-size: 32px; }
+      .ampersand { font-size: 36px; }
+      .countdown { gap: 8px; padding: 2rem 1rem; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="names">
+      <span>Caio</span>
+      <span class="ampersand">&</span>
+      <span>Giovanna</span>
+    </div>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span>♡</span>
+      <div class="divider-line"></div>
+    </div>
+    <div class="date-location">
+      <!-- Atualize a data e o local abaixo -->
+      00 de mês de 2026 &nbsp;·&nbsp; Belo Horizonte, MG
+    </div>
+  </div>
+
+  <div class="countdown" id="countdown-grid">
+    <div class="count-card"><div class="count-number" id="days">--</div><div class="count-label">dias</div></div>
+    <div class="count-card"><div class="count-number" id="hours">--</div><div class="count-label">horas</div></div>
+    <div class="count-card"><div class="count-number" id="mins">--</div><div class="count-label">minutos</div></div>
+    <div class="count-card"><div class="count-number" id="secs">--</div><div class="count-label">segundos</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Detalhes do evento</div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">⛪</div>
+        <div class="info-card-title">Cerimônia</div>
+        <!-- Atualize local e horário -->
+        <div class="info-card-text">Local da cerimônia<br>00h00</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🥂</div>
+        <div class="info-card-title">Recepção</div>
+        <!-- Atualize local e horário -->
+        <div class="info-card-text">Local da recepção<br>00h00</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">👗</div>
+        <div class="info-card-title">Traje</div>
+        <!-- Atualize o traje -->
+        <div class="info-card-text">A definir</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🎁</div>
+        <div class="info-card-title">Lista de presentes</div>
+        <!-- Adicione o link da lista se quiser -->
+        <div class="info-card-text">Disponível em breve</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rsvp-section">
+    <div class="section-title">Confirmação de presença</div>
+    <div class="rsvp-title">Você vai comparecer?</div>
+    <!-- Atualize o prazo de confirmação -->
+    <div class="rsvp-sub">Por favor confirme até 00 de mês de 2026</div>
+    <div class="rsvp-form">
+      <input type="text" placeholder="Seu nome completo" />
+      <input type="email" placeholder="Seu e-mail" />
+      <button class="btn-confirm">Confirmar presença</button>
+    </div>
+  </div>
+
+  <div class="footer">Feito com amor &nbsp;·&nbsp; Caio & Giovanna</div>
+
+  <script>
+    // Atualize esta data para a data real do casamento (AAAA-MM-DDTHH:MM:SS)
+    const weddingDate = new Date('2026-12-31T18:00:00');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) {
+        ['days','hours','mins','secs'].forEach(id => document.getElementById(id).textContent = '0');
+        return;
+      }
+
+      document.getElementById('days').textContent  = Math.floor(diff / 86400000);
+      document.getElementById('hours').textContent = Math.floor((diff % 86400000) / 3600000);
+      document.getElementById('mins').textContent  = Math.floor((diff % 3600000) / 60000);
+      document.getElementById('secs').textContent  = Math.floor((diff % 60000) / 1000);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
