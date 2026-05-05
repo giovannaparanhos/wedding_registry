@@ -1,0 +1,42 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Inject private data
+        env:
+          PIX_KEY: ${{ secrets.PIX_KEY }}
+          PIX_NAME: ${{ secrets.PIX_NAME }}
+          ADDRESS: ${{ secrets.ADDRESS }}
+        run: |
+          sed -i \
+            -e "s|%%PIX_KEY%%|$PIX_KEY|g" \
+            -e "s|%%PIX_NAME%%|$PIX_NAME|g" \
+            -e "s|%%ADDRESS%%|$ADDRESS|g" \
+            presentes.html
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - uses: actions/deploy-pages@v4
+        id: deployment
