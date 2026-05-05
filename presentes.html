@@ -185,6 +185,28 @@
     }
     .amazon-btn:hover { opacity: 0.85; }
 
+    /* ── Address section ── */
+    .address-section {
+      padding: 0 1.5rem 2.5rem;
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .address-card {
+      background: #ffffffcc;
+      border: 0.5px solid #1b130b;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .address-text {
+      font-size: 14px;
+      font-family: system-ui, sans-serif;
+      color: #2c2c2a;
+      line-height: 1.8;
+    }
+
     /* ── PIX section ── */
     .pix-section {
       padding: 2.5rem 1.5rem 3rem;
@@ -390,6 +412,13 @@
     </a>
   </div>
 
+  <div class="address-section">
+    <div class="section-title">Enviar pelo correio?</div>
+    <div class="address-card">
+      <div class="address-text">%%ADDRESS%%</div>
+    </div>
+  </div>
+
   <div class="pix-section">
     <div class="section-title">Preferiu o PIX?</div>
     <div class="pix-title">Chave PIX</div>
@@ -400,10 +429,10 @@
     <div class="pix-card">
       <div class="pix-label">Chave PIX</div>
       <div class="pix-key-box">
-        <div class="pix-key-value" id="pix-key">— chave a definir —</div>
+        <div class="pix-key-value" id="pix-key">%%PIX_KEY%%</div>
         <button class="copy-btn" id="copy-btn" onclick="copyPix()">Copiar</button>
       </div>
-      <div class="pix-name">Favorecido: — a definir —</div>
+      <div class="pix-name">Favorecido: %%PIX_NAME%%</div>
       <div class="pix-note">
         Se quiser, mencione o seu presente na descrição da transferência 🙂
       </div>
