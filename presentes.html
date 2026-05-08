@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lista de Presentes · Caio & Giovanna</title>
+  <title>Lista de Presentes · Giovanna & Caio</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -39,6 +39,7 @@
       font-weight: 500;
       letter-spacing: 0.02em;
       color: #000000;
+      font-family: 'Snell Roundhand', 'Apple Chancery', cursive;
     }
 
     .ampersand {
@@ -87,10 +88,10 @@
       font-family: system-ui, sans-serif;
     }
 
-    /* ── Gift grid ── */
+    /* ── Gift list ── */
     .gifts-section {
       padding: 2.5rem 1.5rem;
-      max-width: 700px;
+      max-width: 520px;
       margin: 0 auto;
     }
 
@@ -104,64 +105,34 @@
       margin-bottom: 1.5rem;
     }
 
-    .gift-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+    .gift-list {
+      list-style: none;
+      border-top: 0.5px solid #1b130b;
     }
 
-    .gift-card {
-      background: #ffffffcc;
-      border: 0.5px solid #1b130b;
-      border-radius: 12px;
-      padding: 1.5rem 1.25rem;
+    .gift-list li {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .gift-card.special {
-      background: #a4dbd7;
-      border-color: #048279;
-      grid-column: span 1;
-    }
-
-    .gift-icon {
-      font-size: 26px;
-      line-height: 1;
-    }
-
-    .gift-name {
-      font-size: 15px;
-      font-weight: 500;
-      color: #000000;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 11px 0;
+      border-bottom: 0.5px solid #1b130b;
       font-family: system-ui, sans-serif;
+      font-size: 14px;
+      color: #1a1a1a;
+      gap: 1rem;
     }
 
-    .gift-desc {
-      font-size: 12px;
-      color: #2c2c2a;
-      font-family: system-ui, sans-serif;
-      line-height: 1.5;
-      opacity: 0.8;
+    .gift-list li.special {
+      color: #1a1a1a;
     }
 
-    .gift-tag {
-      display: inline-block;
-      margin-top: 4px;
+    .gift-category {
       font-size: 11px;
-      font-family: system-ui, sans-serif;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #3d102a;
-      background: #f5e6ec;
-      border-radius: 20px;
-      padding: 2px 10px;
-    }
-
-    .gift-card.special .gift-tag {
-      background: #048279;
-      color: #fff;
+      opacity: 0.7;
+      white-space: nowrap;
     }
 
     /* ── Amazon button ── */
@@ -345,65 +316,16 @@
 
   <div class="gifts-section">
     <div class="section-title">Sugestões</div>
-    <div class="gift-grid">
-
-      <div class="gift-card">
-        <div class="gift-icon">🛏️</div>
-        <div class="gift-name">Roupa de cama</div>
-        <div class="gift-desc">Jogo de cama casal padrão</div>
-        <span class="gift-tag">Casa</span>
-      </div>
-
-      <div class="gift-card">
-        <div class="gift-icon">🧺</div>
-        <div class="gift-name">Jogo de toalhas</div>
-        <div class="gift-desc">Toalhas de banho e rosto</div>
-        <span class="gift-tag">Casa</span>
-      </div>
-
-      <div class="gift-card">
-        <div class="gift-icon">🍰</div>
-        <div class="gift-name">Batedeira</div>
-        <div class="gift-desc">Planetária ou de mão</div>
-        <span class="gift-tag">Cozinha</span>
-      </div>
-
-      <div class="gift-card">
-        <div class="gift-icon">🥗</div>
-        <div class="gift-name">Processador de alimentos</div>
-        <div class="gift-desc">Multi-processador ou liquidificador</div>
-        <span class="gift-tag">Cozinha</span>
-      </div>
-
-      <div class="gift-card">
-        <div class="gift-icon">🍳</div>
-        <div class="gift-name">Panelas de inox</div>
-        <div class="gift-desc">Jogo completo de panelas</div>
-        <span class="gift-tag">Cozinha</span>
-      </div>
-
-      <div class="gift-card">
-        <div class="gift-icon">🤖</div>
-        <div class="gift-name">Robô aspirador</div>
-        <div class="gift-desc">Aspirador inteligente automático</div>
-        <span class="gift-tag">Casa</span>
-      </div>
-
-      <div class="gift-card special">
-        <div class="gift-icon">🏠</div>
-        <div class="gift-name">Cota do apartamento</div>
-        <div class="gift-desc">Contribuição para o nosso novo lar — qualquer valor é muito bem-vindo!</div>
-        <span class="gift-tag">Contribuição</span>
-      </div>
-
-      <div class="gift-card special">
-        <div class="gift-icon">✈️</div>
-        <div class="gift-name">Cota da lua de mel</div>
-        <div class="gift-desc">Ajude a tornar a nossa viagem inesquecível — cada contribuição conta!</div>
-        <span class="gift-tag">Contribuição</span>
-      </div>
-
-    </div>
+    <ul class="gift-list">
+      <li><span>Roupa de cama (casal)</span><span class="gift-category">Casa</span></li>
+      <li><span>Jogo de toalhas</span><span class="gift-category">Casa</span></li>
+      <li><span>Batedeira</span><span class="gift-category">Cozinha</span></li>
+      <li><span>Processador de alimentos</span><span class="gift-category">Cozinha</span></li>
+      <li><span>Panelas de inox</span><span class="gift-category">Cozinha</span></li>
+      <li><span>Robô aspirador</span><span class="gift-category">Casa</span></li>
+      <li class="special"><span>Cota do apartamento</span><span class="gift-category">Contribuição</span></li>
+      <li class="special"><span>Cota da lua de mel</span><span class="gift-category">Contribuição</span></li>
+    </ul>
   </div>
 
   <div class="amazon-section">
