@@ -27,12 +27,18 @@ jobs:
           PIX_KEY: ${{ secrets.PIX_KEY }}
           PIX_NAME: ${{ secrets.PIX_NAME }}
           ADDRESS: ${{ secrets.ADDRESS }}
+          RECEPTION_NAME: ${{ secrets.RECEPTION_NAME }}
+          RECEPTION_ADDRESS: ${{ secrets.RECEPTION_ADDRESS }}
         run: |
           sed -i \
             -e "s|%%PIX_KEY%%|$PIX_KEY|g" \
             -e "s|%%PIX_NAME%%|$PIX_NAME|g" \
             -e "s|%%ADDRESS%%|$ADDRESS|g" \
             presentes.html
+          sed -i \
+            -e "s|%%RECEPTION_NAME%%|$RECEPTION_NAME|g" \
+            -e "s|%%RECEPTION_ADDRESS%%|$RECEPTION_ADDRESS|g" \
+            index.html
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
