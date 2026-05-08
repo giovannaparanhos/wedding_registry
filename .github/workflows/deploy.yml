@@ -38,7 +38,7 @@ jobs:
           sed -i \
             -e "s|%%RECEPTION_NAME%%|$RECEPTION_NAME|g" \
             -e "s|%%RECEPTION_ADDRESS%%|$RECEPTION_ADDRESS|g" \
-            index.html
+            index.html evento.ics
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
