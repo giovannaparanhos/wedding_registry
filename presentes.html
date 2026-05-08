@@ -4,164 +4,150 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lista de Presentes · Caio & Giovanna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: Georgia, 'Times New Roman', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       background: #048279;
-      color: #000000;
+      color: #0a0a0a;
       min-height: 100vh;
     }
 
     /* ── Header ── */
     .hero {
       text-align: center;
-      padding: 3rem 1.5rem 2rem;
-      border-bottom: 0.5px solid #180d02;
+      padding: 3rem 1.5rem 2.5rem;
+      border-bottom: 0.5px solid rgba(0,0,0,0.25);
     }
 
     .back-link {
       display: inline-block;
-      font-family: system-ui, sans-serif;
-      font-size: 12px;
-      letter-spacing: 0.1em;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #2c2c2a;
+      color: rgba(0,0,0,0.5);
       text-decoration: none;
-      margin-bottom: 1.5rem;
-      opacity: 0.7;
+      margin-bottom: 2rem;
+      transition: opacity 0.15s;
     }
-    .back-link:hover { opacity: 1; }
+    .back-link:hover { opacity: 0.75; }
 
     .names {
-      font-size: 36px;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      color: #000000;
+      font-family: 'Snell Roundhand', 'Zapf Chancery', cursive;
+      font-size: 72px;
+      line-height: 1.1;
+      color: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .ampersand {
-      color: #050000e6;
-      font-size: 40px;
-      margin: 0 0.5rem;
+    .names .connector {
+      font-family: 'Snell Roundhand', 'Zapf Chancery', cursive;
+      font-size: 44px;
+      line-height: 1;
+      margin: -6px 0;
     }
 
     .divider {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       justify-content: center;
-      margin: 1rem 0;
-      color: #1b1116;
-      font-size: 18px;
+      margin: 1.5rem 0 1rem;
+      color: rgba(0,0,0,0.4);
+      font-size: 14px;
     }
 
     .divider-line {
-      width: 60px;
+      width: 56px;
       height: 0.5px;
-      background: #1a1719;
-      opacity: 0.5;
+      background: rgba(0,0,0,0.35);
     }
 
     .page-subtitle {
-      font-size: 13px;
-      color: #000000;
-      font-family: system-ui, sans-serif;
-      letter-spacing: 0.1em;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: rgba(0,0,0,0.55);
+      letter-spacing: 0.22em;
       text-transform: uppercase;
     }
 
-    /* ── Intro text ── */
+    /* ── Intro ── */
     .intro {
-      max-width: 560px;
+      max-width: 520px;
       margin: 0 auto;
       padding: 2.5rem 1.5rem 0;
       text-align: center;
     }
 
     .intro p {
-      font-size: 15px;
-      line-height: 1.8;
-      color: #1a1a1a;
-      font-family: system-ui, sans-serif;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.9;
+      color: #0a0a0a;
     }
 
-    /* ── Gift grid ── */
-    .gifts-section {
-      padding: 2.5rem 1.5rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
+    /* ── Section ── */
     .section-title {
-      font-size: 12px;
-      font-family: system-ui, sans-serif;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #200414;
+      letter-spacing: 0.22em;
+      color: rgba(0,0,0,0.5);
       text-align: center;
       margin-bottom: 1.5rem;
     }
 
-    .gift-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+    /* ── Gift list ── */
+    .gifts-section {
+      padding: 2.5rem 1.5rem;
+      max-width: 520px;
+      margin: 0 auto;
     }
 
-    .gift-card {
-      background: #ffffffcc;
-      border: 0.5px solid #1b130b;
+    .gift-list {
+      background: #f5f0ea;
       border-radius: 12px;
-      padding: 1.5rem 1.25rem;
+      overflow: hidden;
+    }
+
+    .gift-item {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 1.25rem;
+      border-bottom: 0.5px solid rgba(0,0,0,0.1);
     }
 
-    .gift-card.special {
-      background: #a4dbd7;
-      border-color: #048279;
-      grid-column: span 1;
-    }
-
-    .gift-icon {
-      font-size: 26px;
-      line-height: 1;
-    }
+    .gift-item:last-child { border-bottom: none; }
 
     .gift-name {
-      font-size: 15px;
-      font-weight: 500;
-      color: #000000;
-      font-family: system-ui, sans-serif;
-    }
-
-    .gift-desc {
-      font-size: 12px;
-      color: #2c2c2a;
-      font-family: system-ui, sans-serif;
-      line-height: 1.5;
-      opacity: 0.8;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #0a0a0a;
     }
 
     .gift-tag {
-      display: inline-block;
-      margin-top: 4px;
-      font-size: 11px;
-      font-family: system-ui, sans-serif;
-      letter-spacing: 0.08em;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #3d102a;
-      background: #f5e6ec;
-      border-radius: 20px;
-      padding: 2px 10px;
-    }
-
-    .gift-card.special .gift-tag {
-      background: #048279;
-      color: #fff;
+      color: rgba(0,0,0,0.4);
+      white-space: nowrap;
     }
 
     /* ── Amazon button ── */
@@ -172,86 +158,91 @@
 
     .amazon-btn {
       display: inline-block;
-      background: #3d102a;
-      color: #fff;
-      font-family: system-ui, sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.08em;
+      background: #0a0a0a;
+      color: #f5f0ea;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       text-decoration: none;
-      padding: 12px 28px;
-      border-radius: 8px;
+      padding: 13px 32px;
+      border-radius: 6px;
       transition: opacity 0.15s;
     }
-    .amazon-btn:hover { opacity: 0.85; }
+    .amazon-btn:hover { opacity: 0.8; }
 
     /* ── Address section ── */
     .address-section {
       padding: 0 1.5rem 2.5rem;
-      max-width: 520px;
+      max-width: 500px;
       margin: 0 auto;
       text-align: center;
     }
 
     .address-card {
-      background: #ffffffcc;
-      border: 0.5px solid #1b130b;
+      background: #f5f0ea;
       border-radius: 12px;
       padding: 1.5rem;
     }
 
     .address-text {
-      font-size: 14px;
-      font-family: system-ui, sans-serif;
-      color: #2c2c2a;
-      line-height: 1.8;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: #2a2a2a;
+      line-height: 1.9;
     }
 
     /* ── PIX section ── */
     .pix-section {
       padding: 2.5rem 1.5rem 3rem;
-      max-width: 520px;
+      max-width: 500px;
       margin: 0 auto;
       text-align: center;
-      border-top: 0.5px solid #180d02;
+      border-top: 0.5px solid rgba(0,0,0,0.2);
     }
 
     .pix-title {
-      font-size: 22px;
-      font-weight: 500;
-      color: #2c2c2a;
-      margin-bottom: 0.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 400;
+      font-style: italic;
+      color: #0a0a0a;
+      margin-bottom: 0.4rem;
     }
 
     .pix-sub {
-      font-size: 14px;
-      color: #131102;
-      font-family: system-ui, sans-serif;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: rgba(0,0,0,0.6);
       margin-bottom: 2rem;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     .pix-card {
-      background: #ffffffcc;
-      border: 0.5px solid #1b130b;
+      background: #f5f0ea;
+      border: none;
       border-radius: 12px;
       padding: 1.75rem 1.5rem;
     }
 
     .pix-label {
-      font-size: 11px;
-      font-family: system-ui, sans-serif;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #3d102a;
-      margin-bottom: 8px;
+      letter-spacing: 0.18em;
+      color: rgba(0,0,0,0.45);
+      margin-bottom: 10px;
     }
 
     .pix-key-box {
       display: flex;
       align-items: center;
       gap: 10px;
-      background: #a4dbd7;
+      background: rgba(4,130,121,0.15);
       border-radius: 8px;
       padding: 12px 16px;
       margin-bottom: 1rem;
@@ -259,73 +250,74 @@
 
     .pix-key-value {
       flex: 1;
-      font-size: 15px;
-      font-family: system-ui, sans-serif;
-      color: #2c2c2a;
-      font-weight: 500;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: #0a0a0a;
       text-align: left;
       word-break: break-all;
     }
 
     .copy-btn {
       flex-shrink: 0;
-      background: #3d102a;
-      color: #fff;
+      background: #0a0a0a;
+      color: #f5f0ea;
       border: none;
-      border-radius: 6px;
-      padding: 6px 14px;
-      font-size: 12px;
-      font-family: system-ui, sans-serif;
+      border-radius: 5px;
+      padding: 7px 16px;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.1em;
       cursor: pointer;
-      letter-spacing: 0.06em;
       transition: opacity 0.15s;
     }
-    .copy-btn:hover { opacity: 0.85; }
-    .copy-btn.copied { background: #048279; }
+    .copy-btn:hover { opacity: 0.8; }
+    .copy-btn.copied { background: #048279; color: #fff; }
 
     .pix-name {
-      font-size: 13px;
-      font-family: system-ui, sans-serif;
-      color: #2c2c2a;
-      opacity: 0.7;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: rgba(0,0,0,0.55);
     }
 
     .pix-note {
       margin-top: 1.25rem;
-      font-size: 12px;
-      font-family: system-ui, sans-serif;
-      color: #2c2c2a;
-      line-height: 1.6;
-      opacity: 0.75;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(0,0,0,0.5);
+      line-height: 1.7;
     }
 
     /* ── Footer ── */
     .footer {
       padding: 2rem 1.5rem;
       text-align: center;
-      font-size: 12px;
-      color: #3d102a;
-      font-family: system-ui, sans-serif;
-      letter-spacing: 0.06em;
-      border-top: 0.5px solid #3d102a;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+      letter-spacing: 0.1em;
+      border-top: 0.5px solid rgba(0,0,0,0.2);
     }
 
     /* ── Responsive ── */
     @media (max-width: 480px) {
-      .names { font-size: 28px; }
-      .ampersand { font-size: 32px; }
+      .names { font-size: 56px; }
+      .names .connector { font-size: 34px; }
       .gift-grid { grid-template-columns: 1fr; }
-      .gift-card.special { grid-column: span 1; }
     }
   </style>
 </head>
 <body>
 
   <div class="hero">
-    <a class="back-link" href="index.html">← voltar ao site</a>
+    <a class="back-link" href="index.html">← voltar</a>
     <div class="names">
       <span>Caio</span>
-      <span class="ampersand">&</span>
+      <span class="connector">e</span>
       <span>Giovanna</span>
     </div>
     <div class="divider">
@@ -345,64 +337,15 @@
 
   <div class="gifts-section">
     <div class="section-title">Sugestões</div>
-    <div class="gift-grid">
-
-      <div class="gift-card">
-        <div class="gift-icon">🛏️</div>
-        <div class="gift-name">Roupa de cama</div>
-        <div class="gift-desc">Jogo de cama casal padrão</div>
-        <span class="gift-tag">Casa</span>
-      </div>
-
-      <div class="gift-card">
-        <div class="gift-icon">🧺</div>
-        <div class="gift-name">Jogo de toalhas</div>
-        <div class="gift-desc">Toalhas de banho e rosto</div>
-        <span class="gift-tag">Casa</span>
-      </div>
-
-      <div class="gift-card">
-        <div class="gift-icon">🍰</div>
-        <div class="gift-name">Batedeira</div>
-        <div class="gift-desc">Planetária ou de mão</div>
-        <span class="gift-tag">Cozinha</span>
-      </div>
-
-      <div class="gift-card">
-        <div class="gift-icon">🥗</div>
-        <div class="gift-name">Processador de alimentos</div>
-        <div class="gift-desc">Multi-processador ou liquidificador</div>
-        <span class="gift-tag">Cozinha</span>
-      </div>
-
-      <div class="gift-card">
-        <div class="gift-icon">🍳</div>
-        <div class="gift-name">Panelas de inox</div>
-        <div class="gift-desc">Jogo completo de panelas</div>
-        <span class="gift-tag">Cozinha</span>
-      </div>
-
-      <div class="gift-card">
-        <div class="gift-icon">🤖</div>
-        <div class="gift-name">Robô aspirador</div>
-        <div class="gift-desc">Aspirador inteligente automático</div>
-        <span class="gift-tag">Casa</span>
-      </div>
-
-      <div class="gift-card special">
-        <div class="gift-icon">🏠</div>
-        <div class="gift-name">Cota do apartamento</div>
-        <div class="gift-desc">Contribuição para o nosso novo lar — qualquer valor é muito bem-vindo!</div>
-        <span class="gift-tag">Contribuição</span>
-      </div>
-
-      <div class="gift-card special">
-        <div class="gift-icon">✈️</div>
-        <div class="gift-name">Cota da lua de mel</div>
-        <div class="gift-desc">Ajude a tornar a nossa viagem inesquecível — cada contribuição conta!</div>
-        <span class="gift-tag">Contribuição</span>
-      </div>
-
+    <div class="gift-list">
+      <div class="gift-item"><span class="gift-name">Roupa de cama</span><span class="gift-tag">Casa</span></div>
+      <div class="gift-item"><span class="gift-name">Jogo de toalhas</span><span class="gift-tag">Casa</span></div>
+      <div class="gift-item"><span class="gift-name">Batedeira</span><span class="gift-tag">Cozinha</span></div>
+      <div class="gift-item"><span class="gift-name">Processador de alimentos</span><span class="gift-tag">Cozinha</span></div>
+      <div class="gift-item"><span class="gift-name">Panelas de inox</span><span class="gift-tag">Cozinha</span></div>
+      <div class="gift-item"><span class="gift-name">Robô aspirador</span><span class="gift-tag">Casa</span></div>
+      <div class="gift-item"><span class="gift-name">Cota do apartamento</span><span class="gift-tag">Contribuição</span></div>
+      <div class="gift-item"><span class="gift-name">Cota da lua de mel</span><span class="gift-tag">Contribuição</span></div>
     </div>
   </div>
 
@@ -434,12 +377,12 @@
       </div>
       <div class="pix-name">Favorecido: %%PIX_NAME%%</div>
       <div class="pix-note">
-        Se quiser, mencione o seu presente na descrição da transferência 🙂
+        Se quiser, mencione o seu presente na descrição da transferência.
       </div>
     </div>
   </div>
 
-  <div class="footer">Feito por Giovanna Paranhos &nbsp;·&nbsp; Caio & Giovanna</div>
+  <div class="footer">Feito com amor &nbsp;·&nbsp; Caio & Giovanna &nbsp;·&nbsp; 09.07.2026</div>
 
   <script>
     function copyPix() {
