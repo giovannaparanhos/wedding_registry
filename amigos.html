@@ -383,6 +383,7 @@
       .deco-bow   { right: -34px; }
       .countdown { gap: 7px; padding: 2rem 1rem; }
       .info-grid { grid-template-columns: 1fr; }
+      .info-grid .info-card { grid-column: span 1; }
     }
   </style>
 </head>
@@ -604,7 +605,7 @@
     function addToGoogle() {
       const loc = encodeURIComponent(document.getElementById('cal-location').textContent.trim());
       const url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-        + '&text=Festa+Giovanna+%26+Caio'
+        + '&text=Casamento+Giovanna+%26+Caio'
         + '&dates=20260711T190000%2F20260712T000000'
         + '&location=' + loc
         + '&details=Venha+celebrar+conosco!';
