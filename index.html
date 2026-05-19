@@ -168,6 +168,20 @@
     }
     a.info-card:hover { opacity: 0.85; }
 
+    .maps-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #0a0a0a;
+      text-decoration: none;
+      border-bottom: 0.5px solid rgba(0,0,0,0.3);
+      transition: opacity 0.15s;
+    }
+    .maps-link:hover { opacity: 0.6; }
+
     .cal-buttons {
       display: flex;
       gap: 8px;
@@ -433,7 +447,8 @@
     <div class="info-grid">
       <div class="info-card">
         <div class="info-card-title">Recepção</div>
-        <div class="info-card-text">%%RECEPTION_NAME%%<br>%%RECEPTION_ADDRESS%%<br>10h30 às 15h</div>
+        <div class="info-card-text">%%RECEPTION_ADDRESS%%<br>10h30 às 15h</div>
+        <a href="%%RECEPTION_MAPS_URL%%" target="_blank" rel="noopener" class="maps-link">Google Maps →</a>
       </div>
       <div class="info-card">
         <div class="info-card-title">Traje</div>
@@ -448,9 +463,9 @@
         <div class="info-card-text">Adicione ao seu calendário</div>
         <div class="cal-buttons">
           <button class="cal-btn" onclick="addToGoogle()">Google</button>
-          <a class="cal-btn" href="evento.ics" download>Apple / iCal</a>
+          <a class="cal-btn" href="evento.ics" download>Calendário do iPhone</a>
         </div>
-        <span id="cal-location" style="display:none">%%RECEPTION_NAME%%, %%RECEPTION_ADDRESS%%</span>
+        <span id="cal-location" style="display:none">%%RECEPTION_ADDRESS%%</span>
       </div>
     </div>
   </div>

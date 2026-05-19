@@ -27,8 +27,8 @@ jobs:
           PIX_KEY: ${{ secrets.PIX_KEY }}
           PIX_NAME: ${{ secrets.PIX_NAME }}
           ADDRESS: ${{ secrets.ADDRESS }}
-          RECEPTION_NAME: ${{ secrets.RECEPTION_NAME }}
           RECEPTION_ADDRESS: ${{ secrets.RECEPTION_ADDRESS }}
+          RECEPTION_MAPS_URL: ${{ secrets.RECEPTION_MAPS_URL }}
           GUEST_LIST: ${{ secrets.GUEST_LIST }}
           FORM_ENDPOINT: ${{ secrets.FORM_ENDPOINT }}
         run: |
@@ -38,13 +38,12 @@ jobs:
             -e "s|%%ADDRESS%%|$ADDRESS|g" \
             presentes.html
           sed -i \
-            -e "s|%%RECEPTION_NAME%%|$RECEPTION_NAME|g" \
             -e "s|%%RECEPTION_ADDRESS%%|$RECEPTION_ADDRESS|g" \
+            -e "s|%%RECEPTION_MAPS_URL%%|$RECEPTION_MAPS_URL|g" \
             -e "s|%%GUEST_LIST%%|$GUEST_LIST|g" \
             -e "s|%%FORM_ENDPOINT%%|$FORM_ENDPOINT|g" \
             index.html
           sed -i \
-            -e "s|%%RECEPTION_NAME%%|$RECEPTION_NAME|g" \
             -e "s|%%RECEPTION_ADDRESS%%|$RECEPTION_ADDRESS|g" \
             evento.ics
 
