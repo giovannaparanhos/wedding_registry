@@ -184,6 +184,20 @@
     }
     .cal-btn:hover { background: rgba(0,0,0,0.15); }
 
+    .maps-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #0a0a0a;
+      text-decoration: none;
+      border-bottom: 0.5px solid rgba(0,0,0,0.3);
+      transition: opacity 0.15s;
+    }
+    .maps-link:hover { opacity: 0.6; }
+
     .info-card-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 17px;
@@ -204,7 +218,7 @@
     .rsvp-section {
       padding: 2.5rem 1.5rem 3rem;
       text-align: center;
-      max-width: 520px;
+      max-width: 480px;
       margin: 0 auto;
     }
 
@@ -224,6 +238,98 @@
       color: rgba(0,0,0,0.6);
       margin-bottom: 1.75rem;
       letter-spacing: 0.04em;
+    }
+
+    .rsvp-card {
+      background: #EDE6F5;
+      border-radius: 14px;
+      padding: 1.75rem 1.5rem;
+      text-align: left;
+    }
+
+    .rsvp-input {
+      width: 100%;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      padding: 11px 14px;
+      border: 0.5px solid rgba(0,0,0,0.2);
+      border-radius: 8px;
+      background: #fff;
+      color: #0a0a0a;
+      outline: none;
+      transition: border-color 0.15s;
+      margin-bottom: 10px;
+    }
+    .rsvp-input:focus { border-color: rgba(0,0,0,0.5); }
+
+    .rsvp-btn-primary {
+      width: 100%;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #0a0a0a;
+      color: #f5f0ea;
+      border: none;
+      border-radius: 8px;
+      padding: 11px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .rsvp-btn-primary:hover { opacity: 0.8; }
+
+    .rsvp-step { display: none; }
+    .rsvp-step.active { display: block; }
+
+    .rsvp-step-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-style: italic;
+      color: #0a0a0a;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .rsvp-found {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: rgba(0,0,0,0.45);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .rsvp-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .rsvp-opt-btn {
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      border: 0.5px solid rgba(0,0,0,0.22);
+      border-radius: 8px;
+      padding: 12px;
+      cursor: pointer;
+      background: transparent;
+      transition: background 0.15s, border-color 0.15s;
+      text-align: center;
+    }
+    .rsvp-opt-btn:hover { background: rgba(0,0,0,0.05); }
+    .rsvp-opt-btn.yes:hover { background: #0a0a0a; color: #f5f0ea; border-color: #0a0a0a; }
+
+    .rsvp-thanks {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: #0a0a0a;
+      line-height: 1.7;
+      text-align: center;
     }
 
     /* ── Footer ── */
@@ -309,7 +415,8 @@
       </div>
       <div class="info-card">
         <div class="info-card-title">Traje</div>
-        <div class="info-card-text">%%TRAJE%%</div>
+        <div class="info-card-text">Club chic — a balada dos seus sonhos de criança. Só evite o branco e o prata!</div>
+        <a href="https://pin.it/11fLOyR3L" target="_blank" rel="noopener" class="maps-link">Ver inspirações no Pinterest →</a>
       </div>
       <div class="info-card" style="grid-column: span 2;">
         <div class="info-card-title">Salvar na agenda</div>
@@ -326,17 +433,41 @@
   <div class="rsvp-section">
     <div class="section-title">Confirmação de presença</div>
     <div class="rsvp-title">Você vai comparecer?</div>
-    <div class="rsvp-sub">Por favor, confirme sua presença pelo formulário abaixo</div>
-    <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLSc9E5Wp1VIyX0yyy2DulmCFf3p7UPqjE0J9wVfSrz-AsZEI0Q/viewform?embedded=true"
-      width="100%"
-      height="520"
-      frameborder="0"
-      marginheight="0"
-      marginwidth="0"
-      style="border-radius: 10px; margin-top: 0.5rem;">
-      Carregando…
-    </iframe>
+    <div class="rsvp-sub">Digite seu nome para confirmar</div>
+
+    <div class="rsvp-card">
+
+      <!-- Passo 1: nome -->
+      <div id="a-step-nome" class="rsvp-step active">
+        <div class="rsvp-step-label">Qual é o seu nome?</div>
+        <input id="a-nome" class="rsvp-input" type="text" placeholder="Nome completo" autocomplete="name" />
+        <button class="rsvp-btn-primary" onclick="aAvancar()">Continuar</button>
+      </div>
+
+      <!-- Passo 2: presença -->
+      <div id="a-step-presenca" class="rsvp-step">
+        <div class="rsvp-found" id="a-found"></div>
+        <div class="rsvp-step-label">Você vai comparecer?</div>
+        <div class="rsvp-options">
+          <button class="rsvp-opt-btn yes" onclick="aEscolher('sim')">Sim, estarei lá!</button>
+          <button class="rsvp-opt-btn yes" onclick="aEscolher('sim+1')">Sim, com +1!</button>
+          <button class="rsvp-opt-btn"     onclick="aEscolher('nao')">Não poderei ir</button>
+        </div>
+      </div>
+
+      <!-- Passo 3: nome do +1 -->
+      <div id="a-step-mais-um" class="rsvp-step">
+        <div class="rsvp-step-label">Nome do seu acompanhante?</div>
+        <input id="a-mais-um" class="rsvp-input" type="text" placeholder="Nome do acompanhante" autocomplete="off" />
+        <button class="rsvp-btn-primary" onclick="aSubmeter()">Confirmar</button>
+      </div>
+
+      <!-- Passo 4: obrigado -->
+      <div id="a-step-thanks" class="rsvp-step">
+        <div class="rsvp-thanks" id="a-thanks"></div>
+      </div>
+
+    </div>
   </div>
 
   <div class="footer">Feito com amor &nbsp;·&nbsp; Caio & Giovanna</div>
@@ -361,6 +492,59 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    /* ── RSVP amigos ── */
+    let aNome = '';
+
+    function aMostrar(id) {
+      document.querySelectorAll('.rsvp-step').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function aAvancar() {
+      const val = document.getElementById('a-nome').value.trim();
+      if (val.length < 2) { document.getElementById('a-nome').focus(); return; }
+      aNome = val;
+      document.getElementById('a-found').textContent = val;
+      aMostrar('a-step-presenca');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('a-nome').addEventListener('keydown', e => {
+        if (e.key === 'Enter') aAvancar();
+      });
+      document.getElementById('a-mais-um').addEventListener('keydown', e => {
+        if (e.key === 'Enter') aSubmeter();
+      });
+    });
+
+    function aEscolher(opcao) {
+      if (opcao === 'sim+1') { aMostrar('a-step-mais-um'); return; }
+      aEnviar({ nome: aNome, presenca: opcao, mais_um: '' });
+      document.getElementById('a-thanks').textContent = opcao === 'sim'
+        ? 'Que alegria! Te esperamos no dia 11 de julho. 🎉'
+        : 'Sentiremos sua falta. Obrigada por avisar!';
+      aMostrar('a-step-thanks');
+    }
+
+    function aSubmeter() {
+      const maisUm = document.getElementById('a-mais-um').value.trim();
+      aEnviar({ nome: aNome, presenca: 'sim', mais_um: maisUm });
+      document.getElementById('a-thanks').textContent =
+        'Que alegria! Esperamos vocês dois no dia 11 de julho. 🎉';
+      aMostrar('a-step-thanks');
+    }
+
+    async function aEnviar(dados) {
+      const endpoint = '%%FORM_ENDPOINT%%';
+      try {
+        await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ ...dados, pagina: 'amigos' })
+        });
+      } catch (_) {}
+    }
 
     function addToGoogle() {
       const loc = encodeURIComponent(document.getElementById('cal-location').textContent.trim());

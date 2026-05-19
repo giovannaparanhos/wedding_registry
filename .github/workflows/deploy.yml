@@ -44,6 +44,9 @@ jobs:
             -e "s|%%FORM_ENDPOINT%%|$FORM_ENDPOINT|g" \
             index.html
           sed -i \
+            -e "s|%%FORM_ENDPOINT%%|$FORM_ENDPOINT|g" \
+            amigos.html
+          sed -i \
             -e "s|%%RECEPTION_ADDRESS%%|$RECEPTION_ADDRESS|g" \
             evento.ics
 
