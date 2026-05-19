@@ -29,6 +29,8 @@ jobs:
           ADDRESS: ${{ secrets.ADDRESS }}
           RECEPTION_NAME: ${{ secrets.RECEPTION_NAME }}
           RECEPTION_ADDRESS: ${{ secrets.RECEPTION_ADDRESS }}
+          GUEST_LIST: ${{ secrets.GUEST_LIST }}
+          FORM_ENDPOINT: ${{ secrets.FORM_ENDPOINT }}
         run: |
           sed -i \
             -e "s|%%PIX_KEY%%|$PIX_KEY|g" \
@@ -38,7 +40,13 @@ jobs:
           sed -i \
             -e "s|%%RECEPTION_NAME%%|$RECEPTION_NAME|g" \
             -e "s|%%RECEPTION_ADDRESS%%|$RECEPTION_ADDRESS|g" \
-            index.html evento.ics
+            -e "s|%%GUEST_LIST%%|$GUEST_LIST|g" \
+            -e "s|%%FORM_ENDPOINT%%|$FORM_ENDPOINT|g" \
+            index.html
+          sed -i \
+            -e "s|%%RECEPTION_NAME%%|$RECEPTION_NAME|g" \
+            -e "s|%%RECEPTION_ADDRESS%%|$RECEPTION_ADDRESS|g" \
+            evento.ics
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

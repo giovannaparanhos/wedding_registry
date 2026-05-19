@@ -210,7 +210,7 @@
     .rsvp-section {
       padding: 2.5rem 1.5rem 3rem;
       text-align: center;
-      max-width: 520px;
+      max-width: 480px;
       margin: 0 auto;
     }
 
@@ -230,6 +230,98 @@
       color: rgba(0,0,0,0.6);
       margin-bottom: 1.75rem;
       letter-spacing: 0.04em;
+    }
+
+    .rsvp-card {
+      background: #f5f0ea;
+      border-radius: 14px;
+      padding: 1.75rem 1.5rem;
+    }
+
+    .rsvp-input {
+      width: 100%;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      padding: 11px 14px;
+      border: 0.5px solid rgba(0,0,0,0.2);
+      border-radius: 8px;
+      background: #fff;
+      color: #0a0a0a;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .rsvp-input:focus { border-color: rgba(0,0,0,0.5); }
+    .rsvp-input.error { border-color: #c0392b; }
+
+    .rsvp-search-btn {
+      width: 100%;
+      margin-top: 10px;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #0a0a0a;
+      color: #f5f0ea;
+      border: none;
+      border-radius: 8px;
+      padding: 11px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .rsvp-search-btn:hover { opacity: 0.8; }
+
+    .rsvp-error {
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: #c0392b;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* Step 2 — confirmação */
+    .rsvp-confirm { display: none; }
+
+    .rsvp-found-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: #0a0a0a;
+      margin-bottom: 1.25rem;
+    }
+
+    .rsvp-yn {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .rsvp-yn-btn {
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 0.5px solid rgba(0,0,0,0.3);
+      border-radius: 8px;
+      padding: 11px 32px;
+      cursor: pointer;
+      background: transparent;
+      transition: background 0.15s, color 0.15s;
+    }
+    .rsvp-yn-btn.yes:hover { background: #0a0a0a; color: #f5f0ea; border-color: #0a0a0a; }
+    .rsvp-yn-btn.no:hover  { background: rgba(0,0,0,0.08); }
+
+    /* Step 3 — obrigado */
+    .rsvp-thanks { display: none; }
+    .rsvp-thanks-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: #0a0a0a;
+      line-height: 1.6;
     }
 
     /* ── Footer ── */
@@ -336,17 +428,35 @@
   <div class="rsvp-section">
     <div class="section-title">Confirmação de presença</div>
     <div class="rsvp-title">Você vai comparecer?</div>
-    <div class="rsvp-sub">Por favor, confirme sua presença pelo formulário abaixo</div>
-    <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLSeBDqt6AQ8ISj3nTVpRSQisttJGhBQdKi0T68sHc3hamYANUQ/viewform?embedded=true"
-      width="100%"
-      height="520"
-      frameborder="0"
-      marginheight="0"
-      marginwidth="0"
-      style="border-radius: 10px; margin-top: 0.5rem;">
-      Carregando…
-    </iframe>
+    <div class="rsvp-sub">Digite seu nome para confirmar presença</div>
+
+    <div class="rsvp-card">
+
+      <!-- Passo 1: busca por nome -->
+      <div id="rsvp-step-search">
+        <input id="rsvp-name" class="rsvp-input" type="text" placeholder="Seu nome completo" autocomplete="name" />
+        <div class="rsvp-error" id="rsvp-error">
+          Nome não encontrado. Entre em contato conosco.
+        </div>
+        <button class="rsvp-search-btn" onclick="buscarConvidado()">Continuar</button>
+      </div>
+
+      <!-- Passo 2: sim / não -->
+      <div id="rsvp-step-confirm" class="rsvp-confirm">
+        <div class="rsvp-found-name" id="rsvp-found-name"></div>
+        <div class="rsvp-sub" style="margin-bottom:1.25rem">Você vai comparecer?</div>
+        <div class="rsvp-yn">
+          <button class="rsvp-yn-btn yes" onclick="confirmar('sim')">Sim, vou!</button>
+          <button class="rsvp-yn-btn no"  onclick="confirmar('nao')">Não poderei ir</button>
+        </div>
+      </div>
+
+      <!-- Passo 3: obrigado -->
+      <div id="rsvp-step-thanks" class="rsvp-thanks">
+        <div class="rsvp-thanks-text" id="rsvp-thanks-text"></div>
+      </div>
+
+    </div>
   </div>
 
   <div class="footer">Feito com amor &nbsp;·&nbsp; Caio & Giovanna &nbsp;·&nbsp; 09.07.2026</div>
@@ -371,6 +481,72 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    /* ── Lista de convidados (injetada pelo workflow) ── */
+    const guests = %%GUEST_LIST%%;
+
+    function normalizar(s) {
+      return s.toLowerCase()
+        .normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/\s+/g, ' ').trim();
+    }
+
+    function encontrarConvidado(input) {
+      const n = normalizar(input);
+      if (n.length < 3) return null;
+      return guests.find(g => {
+        const gn = normalizar(g);
+        return gn === n || gn.includes(n) || n.includes(gn);
+      }) || null;
+    }
+
+    let nomeEncontrado = '';
+
+    function buscarConvidado() {
+      const input = document.getElementById('rsvp-name').value;
+      const erro  = document.getElementById('rsvp-error');
+      const field = document.getElementById('rsvp-name');
+      const found = encontrarConvidado(input);
+
+      if (!found) {
+        field.classList.add('error');
+        erro.style.display = 'block';
+        return;
+      }
+
+      field.classList.remove('error');
+      erro.style.display = 'none';
+      nomeEncontrado = found;
+
+      document.getElementById('rsvp-found-name').textContent = found;
+      document.getElementById('rsvp-step-search').style.display  = 'none';
+      document.getElementById('rsvp-step-confirm').style.display = 'block';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('rsvp-name').addEventListener('keydown', e => {
+        if (e.key === 'Enter') buscarConvidado();
+      });
+    });
+
+    async function confirmar(resposta) {
+      const endpoint = '%%FORM_ENDPOINT%%';
+      try {
+        await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ nome: nomeEncontrado, presenca: resposta })
+        });
+      } catch (_) { /* falha silenciosa — resposta registrada localmente */ }
+
+      const msg = resposta === 'sim'
+        ? 'Que alegria! Te esperamos no dia 09 de julho. 🎉'
+        : 'Sentiremos sua falta. Obrigada por avisar!';
+
+      document.getElementById('rsvp-step-confirm').style.display = 'none';
+      document.getElementById('rsvp-step-thanks').style.display  = 'block';
+      document.getElementById('rsvp-thanks-text').textContent = msg;
+    }
 
     function addToGoogle() {
       const loc = encodeURIComponent(document.getElementById('cal-location').textContent.trim());
