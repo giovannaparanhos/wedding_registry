@@ -323,6 +323,37 @@
     .rsvp-opt-btn:hover { background: rgba(0,0,0,0.05); }
     .rsvp-opt-btn.yes:hover { background: #0a0a0a; color: #f5f0ea; border-color: #0a0a0a; }
 
+    .nota {
+      margin-top: 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(0,0,0,0.45);
+      text-align: center;
+    }
+
+    .after-section {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 0.5px solid rgba(0,0,0,0.12);
+      text-align: center;
+    }
+
+    .after-title {
+      font-family: 'Snell Roundhand', 'Pinyon Script', cursive;
+      font-size: 36px;
+      color: #0a0a0a;
+      margin-bottom: 0.4rem;
+    }
+
+    .after-text {
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: rgba(0,0,0,0.55);
+      letter-spacing: 0.04em;
+    }
+
     .rsvp-thanks {
       font-family: 'Cormorant Garamond', serif;
       font-size: 20px;
@@ -411,7 +442,7 @@
     <div class="info-grid">
       <div class="info-card">
         <div class="info-card-title">Local</div>
-        <div class="info-card-text">%%NOME_DO_LOCAL%%<br>%%ENDEREÇO%%</div>
+        <div class="info-card-text">%%NOME_DO_LOCAL%%<br>%%ENDEREÇO%%<br>19h às 00h</div>
       </div>
       <div class="info-card">
         <div class="info-card-title">Traje</div>
@@ -423,10 +454,19 @@
         <div class="info-card-text">Adicione ao seu calendário</div>
         <div class="cal-buttons">
           <button class="cal-btn" onclick="addToGoogle()">Google</button>
-          <a class="cal-btn" href="amigos.ics" download>Apple / iCal</a>
+          <a class="cal-btn" href="amigos.ics" download>Calendário do iPhone</a>
         </div>
         <span id="cal-location" style="display:none">%%NOME_DO_LOCAL%%, %%ENDEREÇO%%</span>
       </div>
+    </div>
+    <div class="after-section">
+      <div class="after-title">E o jogo?</div>
+      <div class="after-text">Se houver jogo do Brasil, teremos transmissão!</div>
+    </div>
+
+    <div class="after-section">
+      <div class="after-title">E o after?</div>
+      <div class="after-text">Vai ter after sim! Em breve mais informações.</div>
     </div>
   </div>
 
