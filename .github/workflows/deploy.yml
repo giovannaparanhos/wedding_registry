@@ -31,6 +31,7 @@ jobs:
           RECEPTION_MAPS_URL: ${{ secrets.RECEPTION_MAPS_URL }}
           GUEST_LIST: ${{ secrets.GUEST_LIST }}
           FORM_ENDPOINT: ${{ secrets.FORM_ENDPOINT }}
+          PARTY_MAPS_URL: ${{ secrets.PARTY_MAPS_URL }}
         run: |
           sed -i \
             -e "s|%%PIX_KEY%%|$PIX_KEY|g" \
@@ -45,6 +46,7 @@ jobs:
             index.html
           sed -i \
             -e "s|%%FORM_ENDPOINT%%|$FORM_ENDPOINT|g" \
+            -e "s|%%PARTY_MAPS_URL%%|$PARTY_MAPS_URL|g" \
             amigos.html
           sed -i \
             -e "s|%%RECEPTION_ADDRESS%%|$RECEPTION_ADDRESS|g" \
