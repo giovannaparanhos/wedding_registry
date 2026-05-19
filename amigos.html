@@ -323,6 +323,15 @@
     .rsvp-opt-btn:hover { background: rgba(0,0,0,0.05); }
     .rsvp-opt-btn.yes:hover { background: #0a0a0a; color: #f5f0ea; border-color: #0a0a0a; }
 
+    .nota {
+      margin-top: 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(0,0,0,0.45);
+      text-align: center;
+    }
+
     .rsvp-thanks {
       font-family: 'Cormorant Garamond', serif;
       font-size: 20px;
@@ -411,7 +420,7 @@
     <div class="info-grid">
       <div class="info-card">
         <div class="info-card-title">Local</div>
-        <div class="info-card-text">%%NOME_DO_LOCAL%%<br>%%ENDEREÇO%%</div>
+        <div class="info-card-text">%%NOME_DO_LOCAL%%<br>%%ENDEREÇO%%<br>19h às 23h</div>
       </div>
       <div class="info-card">
         <div class="info-card-title">Traje</div>
@@ -423,11 +432,12 @@
         <div class="info-card-text">Adicione ao seu calendário</div>
         <div class="cal-buttons">
           <button class="cal-btn" onclick="addToGoogle()">Google</button>
-          <a class="cal-btn" href="amigos.ics" download>Apple / iCal</a>
+          <a class="cal-btn" href="amigos.ics" download>Calendário do iPhone</a>
         </div>
         <span id="cal-location" style="display:none">%%NOME_DO_LOCAL%%, %%ENDEREÇO%%</span>
       </div>
     </div>
+    <p class="nota">* Se houver jogo do Brasil, haverá transmissão!</p>
   </div>
 
   <div class="rsvp-section">
