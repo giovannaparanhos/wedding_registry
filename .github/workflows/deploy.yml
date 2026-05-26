@@ -29,7 +29,6 @@ jobs:
           ADDRESS: ${{ secrets.ADDRESS }}
           RECEPTION_ADDRESS: ${{ secrets.RECEPTION_ADDRESS }}
           RECEPTION_MAPS_URL: ${{ secrets.RECEPTION_MAPS_URL }}
-          FORM_ENDPOINT: ${{ secrets.FORM_ENDPOINT }}
           PARTY_MAPS_URL: ${{ secrets.PARTY_MAPS_URL }}
         run: |
           sed -i \
@@ -40,10 +39,8 @@ jobs:
           sed -i \
             -e "s|%%RECEPTION_ADDRESS%%|$RECEPTION_ADDRESS|g" \
             -e "s|%%RECEPTION_MAPS_URL%%|$RECEPTION_MAPS_URL|g" \
-            -e "s|%%FORM_ENDPOINT%%|$FORM_ENDPOINT|g" \
             family.html
           sed -i \
-            -e "s|%%FORM_ENDPOINT%%|$FORM_ENDPOINT|g" \
             -e "s|%%PARTY_MAPS_URL%%|$PARTY_MAPS_URL|g" \
             amigos.html
           sed -i \
