@@ -266,39 +266,8 @@
       transition: border-color 0.15s;
     }
     .rsvp-input:focus { border-color: rgba(0,0,0,0.5); }
-    .rsvp-input.error { border-color: #c0392b; }
 
-    .rsvp-autocomplete {
-      position: relative;
-    }
-
-    .rsvp-dropdown {
-      position: absolute;
-      top: calc(100% + 4px);
-      left: 0; right: 0;
-      background: #fff;
-      border: 0.5px solid rgba(0,0,0,0.15);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      z-index: 10;
-      display: none;
-    }
-
-    .rsvp-dropdown-item {
-      font-family: 'Jost', system-ui, sans-serif;
-      font-weight: 300;
-      font-size: 13px;
-      color: #0a0a0a;
-      padding: 10px 14px;
-      cursor: pointer;
-      text-align: left;
-      transition: background 0.1s;
-    }
-    .rsvp-dropdown-item:hover,
-    .rsvp-dropdown-item.active { background: #f5f0ea; }
-
-    .rsvp-search-btn {
+    .rsvp-btn-primary {
       width: 100%;
       margin-top: 10px;
       font-family: 'Jost', system-ui, sans-serif;
@@ -314,58 +283,56 @@
       cursor: pointer;
       transition: opacity 0.15s;
     }
-    .rsvp-search-btn:hover { opacity: 0.8; }
+    .rsvp-btn-primary:hover { opacity: 0.8; }
 
-    .rsvp-error {
-      font-family: 'Jost', system-ui, sans-serif;
-      font-weight: 300;
-      font-size: 12px;
-      color: #c0392b;
-      margin-top: 10px;
-      display: none;
+    .rsvp-step { display: none; }
+    .rsvp-step.active { display: block; }
+
+    .rsvp-step-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-style: italic;
+      color: #0a0a0a;
+      margin-bottom: 1rem;
     }
 
-    /* Step 2 — confirmação */
-    .rsvp-confirm { display: none; }
-
-    .rsvp-found-name {
+    .rsvp-found {
       font-family: 'Cormorant Garamond', serif;
       font-size: 20px;
       font-style: italic;
       color: #0a0a0a;
-      margin-bottom: 1.25rem;
+      margin-bottom: 0.5rem;
     }
 
-    .rsvp-yn {
+    .rsvp-options {
       display: flex;
-      gap: 10px;
-      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .rsvp-yn-btn {
+    .rsvp-opt-btn {
       font-family: 'Jost', system-ui, sans-serif;
       font-weight: 300;
       font-size: 12px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      border: 0.5px solid rgba(0,0,0,0.3);
+      border: 0.5px solid rgba(0,0,0,0.25);
       border-radius: 8px;
-      padding: 11px 32px;
+      padding: 11px;
       cursor: pointer;
       background: transparent;
       transition: background 0.15s, color 0.15s;
     }
-    .rsvp-yn-btn.yes:hover { background: #0a0a0a; color: #f5f0ea; border-color: #0a0a0a; }
-    .rsvp-yn-btn.no:hover  { background: rgba(0,0,0,0.08); }
+    .rsvp-opt-btn:hover { background: rgba(0,0,0,0.05); }
+    .rsvp-opt-btn.yes:hover { background: #0a0a0a; color: #f5f0ea; border-color: #0a0a0a; }
 
-    /* Step 3 — obrigado */
-    .rsvp-thanks { display: none; }
-    .rsvp-thanks-text {
+    .rsvp-thanks {
       font-family: 'Cormorant Garamond', serif;
       font-size: 20px;
       font-style: italic;
       color: #0a0a0a;
-      line-height: 1.6;
+      line-height: 1.7;
+      text-align: center;
     }
 
     /* ── Footer ── */
@@ -497,35 +464,30 @@
   <div class="rsvp-section">
     <div class="section-title">Confirmação de presença</div>
     <div class="rsvp-title">Você vai comparecer?</div>
-    <div class="rsvp-sub">Digite seu nome para confirmar presença - confirmação individual!</div>
+    <div class="rsvp-sub">Digite seu nome para confirmar</div>
 
     <div class="rsvp-card">
 
-      <!-- Passo 1: busca por nome -->
-      <div id="rsvp-step-search">
-        <div class="rsvp-autocomplete">
-          <input id="rsvp-name" class="rsvp-input" type="text" placeholder="Seu nome completo" autocomplete="off" />
-          <div id="rsvp-dropdown" class="rsvp-dropdown"></div>
-        </div>
-        <div class="rsvp-error" id="rsvp-error">
-          Nome não encontrado. Entre em contato conosco.
-        </div>
-        <button class="rsvp-search-btn" onclick="buscarConvidado()">Continuar</button>
+      <!-- Passo 1: nome -->
+      <div id="f-step-nome" class="rsvp-step active">
+        <div class="rsvp-step-label">Qual é o seu nome?</div>
+        <input id="f-nome" class="rsvp-input" type="text" placeholder="Nome completo" autocomplete="name" />
+        <button class="rsvp-btn-primary" onclick="fAvancar()">Continuar</button>
       </div>
 
-      <!-- Passo 2: sim / não -->
-      <div id="rsvp-step-confirm" class="rsvp-confirm">
-        <div class="rsvp-found-name" id="rsvp-found-name"></div>
-        <div class="rsvp-sub" style="margin-bottom:1.25rem">Você vai comparecer?</div>
-        <div class="rsvp-yn">
-          <button class="rsvp-yn-btn yes" onclick="confirmar('sim')">Sim, vou!</button>
-          <button class="rsvp-yn-btn no"  onclick="confirmar('nao')">Não poderei ir</button>
+      <!-- Passo 2: presença -->
+      <div id="f-step-presenca" class="rsvp-step">
+        <div class="rsvp-found" id="f-found"></div>
+        <div class="rsvp-step-label">Você vai comparecer?</div>
+        <div class="rsvp-options">
+          <button class="rsvp-opt-btn yes" onclick="fEscolher('sim')">Sim, estarei lá!</button>
+          <button class="rsvp-opt-btn"     onclick="fEscolher('nao')">Não poderei ir</button>
         </div>
       </div>
 
       <!-- Passo 3: obrigado -->
-      <div id="rsvp-step-thanks" class="rsvp-thanks">
-        <div class="rsvp-thanks-text" id="rsvp-thanks-text"></div>
+      <div id="f-step-thanks" class="rsvp-step">
+        <div class="rsvp-thanks" id="f-thanks"></div>
       </div>
 
     </div>
@@ -562,129 +524,45 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    /* ── Lista de convidados (injetada pelo workflow) ── */
-    const guests = %%GUEST_LIST%%;
+    /* ── RSVP family ── */
+    let fNome = '';
 
-    function normalizar(s) {
-      return s.toLowerCase()
-        .normalize('NFD').replace(/[̀-ͯ]/g, '')
-        .replace(/\s+/g, ' ').trim();
+    function fMostrar(id) {
+      document.querySelectorAll('.rsvp-step').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
 
-    function encontrarConvidado(input) {
-      const n = normalizar(input);
-      if (n.length < 3) return null;
-      return guests.find(g => {
-        const gn = normalizar(g);
-        return gn === n || gn.includes(n) || n.includes(gn);
-      }) || null;
-    }
-
-    let nomeEncontrado = '';
-    let activeIndex = -1;
-
-    function sugestoes(input) {
-      const n = normalizar(input);
-      if (n.length < 2) return [];
-      return guests.filter(g => normalizar(g).includes(n));
-    }
-
-    function renderDropdown(items) {
-      const dd = document.getElementById('rsvp-dropdown');
-      if (!items.length) { dd.style.display = 'none'; return; }
-      dd.innerHTML = items.map((name, i) =>
-        `<div class="rsvp-dropdown-item" data-index="${i}" onmousedown="selecionarNome('${name.replace(/'/g, "\\'")}')">${name}</div>`
-      ).join('');
-      dd.style.display = 'block';
-      activeIndex = -1;
-    }
-
-    function selecionarNome(nome) {
-      document.getElementById('rsvp-name').value = nome;
-      document.getElementById('rsvp-dropdown').style.display = 'none';
-      document.getElementById('rsvp-error').style.display = 'none';
-      document.getElementById('rsvp-name').classList.remove('error');
-      activeIndex = -1;
-    }
-
-    function buscarConvidado() {
-      const input = document.getElementById('rsvp-name').value;
-      const erro  = document.getElementById('rsvp-error');
-      const field = document.getElementById('rsvp-name');
-      const found = encontrarConvidado(input);
-
-      document.getElementById('rsvp-dropdown').style.display = 'none';
-
-      if (!found) {
-        field.classList.add('error');
-        erro.style.display = 'block';
-        return;
-      }
-
-      field.classList.remove('error');
-      erro.style.display = 'none';
-      nomeEncontrado = found;
-
-      document.getElementById('rsvp-found-name').textContent = found;
-      document.getElementById('rsvp-step-search').style.display  = 'none';
-      document.getElementById('rsvp-step-confirm').style.display = 'block';
+    function fAvancar() {
+      const val = document.getElementById('f-nome').value.trim();
+      if (val.length < 2) { document.getElementById('f-nome').focus(); return; }
+      fNome = val;
+      document.getElementById('f-found').textContent = val;
+      fMostrar('f-step-presenca');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      const input = document.getElementById('rsvp-name');
-
-      input.addEventListener('input', () => {
-        renderDropdown(sugestoes(input.value));
-      });
-
-      input.addEventListener('keydown', e => {
-        const dd = document.getElementById('rsvp-dropdown');
-        const items = dd.querySelectorAll('.rsvp-dropdown-item');
-
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          activeIndex = Math.min(activeIndex + 1, items.length - 1);
-        } else if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          activeIndex = Math.max(activeIndex - 1, -1);
-        } else if (e.key === 'Enter') {
-          if (activeIndex >= 0 && items[activeIndex]) {
-            selecionarNome(items[activeIndex].textContent);
-          } else {
-            buscarConvidado();
-          }
-          return;
-        } else if (e.key === 'Escape') {
-          dd.style.display = 'none';
-          return;
-        }
-
-        items.forEach((el, i) => el.classList.toggle('active', i === activeIndex));
-        if (items[activeIndex]) input.value = items[activeIndex].textContent;
-      });
-
-      input.addEventListener('blur', () => {
-        setTimeout(() => { document.getElementById('rsvp-dropdown').style.display = 'none'; }, 150);
+      document.getElementById('f-nome').addEventListener('keydown', e => {
+        if (e.key === 'Enter') fAvancar();
       });
     });
 
-    async function confirmar(resposta) {
+    function fEscolher(opcao) {
+      fEnviar({ nome: fNome, presenca: opcao });
+      document.getElementById('f-thanks').textContent = opcao === 'sim'
+        ? 'Que alegria! Te esperamos no dia 09 de julho. 🎉'
+        : 'Sentiremos sua falta. Obrigada por avisar!';
+      fMostrar('f-step-thanks');
+    }
+
+    async function fEnviar(dados) {
       const endpoint = '%%FORM_ENDPOINT%%';
       try {
         await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ nome: nomeEncontrado, presenca: resposta })
+          body: JSON.stringify({ ...dados, pagina: 'familiar' })
         });
-      } catch (_) { /* falha silenciosa — resposta registrada localmente */ }
-
-      const msg = resposta === 'sim'
-        ? 'Que alegria! Te esperamos no dia 09 de julho. 🎉'
-        : 'Sentiremos sua falta. Obrigada por avisar!';
-
-      document.getElementById('rsvp-step-confirm').style.display = 'none';
-      document.getElementById('rsvp-step-thanks').style.display  = 'block';
-      document.getElementById('rsvp-thanks-text').textContent = msg;
+      } catch (_) {}
     }
 
     function addToGoogle() {
