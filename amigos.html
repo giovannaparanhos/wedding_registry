@@ -596,7 +596,8 @@
       try {
         await fetch(endpoint, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify({ ...dados, pagina: 'amigos' })
         });
       } catch (_) {}
