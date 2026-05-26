@@ -481,11 +481,19 @@
         <div class="rsvp-step-label">Você vai comparecer?</div>
         <div class="rsvp-options">
           <button class="rsvp-opt-btn yes" onclick="fEscolher('sim')">Sim, estarei lá!</button>
+          <button class="rsvp-opt-btn yes" onclick="fEscolher('sim+1')">Sim, com +1!</button>
           <button class="rsvp-opt-btn"     onclick="fEscolher('nao')">Não poderei ir</button>
         </div>
       </div>
 
-      <!-- Passo 3: obrigado -->
+      <!-- Passo 3: nome do +1 -->
+      <div id="f-step-mais-um" class="rsvp-step">
+        <div class="rsvp-step-label">Nome do seu acompanhante?</div>
+        <input id="f-mais-um" class="rsvp-input" type="text" placeholder="Nome do acompanhante" autocomplete="off" />
+        <button class="rsvp-btn-primary" onclick="fSubmeter()">Confirmar</button>
+      </div>
+
+      <!-- Passo 4: obrigado -->
       <div id="f-step-thanks" class="rsvp-step">
         <div class="rsvp-thanks" id="f-thanks"></div>
       </div>
@@ -544,13 +552,25 @@
       document.getElementById('f-nome').addEventListener('keydown', e => {
         if (e.key === 'Enter') fAvancar();
       });
+      document.getElementById('f-mais-um').addEventListener('keydown', e => {
+        if (e.key === 'Enter') fSubmeter();
+      });
     });
 
     function fEscolher(opcao) {
-      fEnviar({ nome: fNome, presenca: opcao });
+      if (opcao === 'sim+1') { fMostrar('f-step-mais-um'); return; }
+      fEnviar({ nome: fNome, presenca: opcao, mais_um: '' });
       document.getElementById('f-thanks').textContent = opcao === 'sim'
         ? 'Que alegria! Te esperamos no dia 09 de julho. 🎉'
         : 'Sentiremos sua falta. Obrigada por avisar!';
+      fMostrar('f-step-thanks');
+    }
+
+    function fSubmeter() {
+      const maisUm = document.getElementById('f-mais-um').value.trim();
+      fEnviar({ nome: fNome, presenca: 'sim', mais_um: maisUm });
+      document.getElementById('f-thanks').textContent =
+        'Que alegria! Esperamos vocês dois no dia 09 de julho. 🎉';
       fMostrar('f-step-thanks');
     }
 
