@@ -43,7 +43,7 @@ jobs:
             -e "s|%%RECEPTION_MAPS_URL%%|$RECEPTION_MAPS_URL|g" \
             -e "s|%%GUEST_LIST%%|$GUEST_LIST|g" \
             -e "s|%%FORM_ENDPOINT%%|$FORM_ENDPOINT|g" \
-            index.html
+            family.html
           sed -i \
             -e "s|%%FORM_ENDPOINT%%|$FORM_ENDPOINT|g" \
             -e "s|%%PARTY_MAPS_URL%%|$PARTY_MAPS_URL|g" \
