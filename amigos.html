@@ -375,7 +375,30 @@
       border-top: 0.5px solid rgba(0,0,0,0.2);
     }
 
-    /* ── Responsive ── */
+    /* ── Desktop ── */
+    @media (min-width: 768px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .info-card-full { grid-column: span 1 !important; }
+      .hero-label    { font-size: 13px; }
+      .names         { font-size: 108px; }
+      .names .connector { font-size: 66px; }
+      .date-location { font-size: 15px; }
+      .count-number  { font-size: 42px; }
+      .count-label   { font-size: 11px; }
+      .section-title { font-size: 12px; }
+      .info-card-title { font-size: 20px; }
+      .info-card-text  { font-size: 14px; }
+      .maps-link, .cal-btn { font-size: 13px; }
+      .rsvp-title    { font-size: 32px; }
+      .rsvp-sub      { font-size: 14px; }
+      .rsvp-input    { font-size: 16px; }
+      .after-title   { font-size: 44px; }
+      .after-text    { font-size: 14px; }
+      .rsvp-thanks   { font-size: 22px; }
+      .footer        { font-size: 13px; }
+    }
+
+    /* ── Mobile ── */
     @media (max-width: 480px) {
       .names { font-size: 66px; }
       .names .connector { font-size: 40px; }
@@ -477,7 +500,7 @@
 
     <div class="after-section">
       <div class="after-title">E o bar?</div>
-      <div class="after-text">Vamos começar com uma cerveja por conta da casa! Uma vez que acabar, o bar fica com comanda individual. Bolo também tem pra adoçar a noite.</div>
+      <div class="after-text">Vamos começar com cerveja por conta da casa! Uma vez que acabar, o bar fica com comanda individual. E teremos bolo!</div>
     </div>
 
     <div class="after-section">
