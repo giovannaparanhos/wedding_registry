@@ -29,22 +29,27 @@ jobs:
           ADDRESS: ${{ secrets.ADDRESS }}
           RECEPTION_ADDRESS: ${{ secrets.RECEPTION_ADDRESS }}
           RECEPTION_MAPS_URL: ${{ secrets.RECEPTION_MAPS_URL }}
+          PARTY_NAME: ${{ secrets.PARTY_NAME }}
+          PARTY_ADDRESS: ${{ secrets.PARTY_ADDRESS }}
           PARTY_MAPS_URL: ${{ secrets.PARTY_MAPS_URL }}
         run: |
+          esc() { printf '%s' "$1" | sed 's/[&\]/\\&/g'; }
           sed -i \
-            -e "s|%%PIX_KEY%%|$PIX_KEY|g" \
-            -e "s|%%PIX_NAME%%|$PIX_NAME|g" \
-            -e "s|%%ADDRESS%%|$ADDRESS|g" \
+            -e "s|%%PIX_KEY%%|$(esc "$PIX_KEY")|g" \
+            -e "s|%%PIX_NAME%%|$(esc "$PIX_NAME")|g" \
+            -e "s|%%ADDRESS%%|$(esc "$ADDRESS")|g" \
             presentes.html
           sed -i \
-            -e "s|%%RECEPTION_ADDRESS%%|$RECEPTION_ADDRESS|g" \
-            -e "s|%%RECEPTION_MAPS_URL%%|$RECEPTION_MAPS_URL|g" \
+            -e "s|%%RECEPTION_ADDRESS%%|$(esc "$RECEPTION_ADDRESS")|g" \
+            -e "s|%%RECEPTION_MAPS_URL%%|$(esc "$RECEPTION_MAPS_URL")|g" \
             family.html
           sed -i \
-            -e "s|%%PARTY_MAPS_URL%%|$PARTY_MAPS_URL|g" \
+            -e "s|%%NOME_DO_LOCAL%%|$(esc "$PARTY_NAME")|g" \
+            -e "s|%%ENDEREÇO%%|$(esc "$PARTY_ADDRESS")|g" \
+            -e "s|%%PARTY_MAPS_URL%%|$(esc "$PARTY_MAPS_URL")|g" \
             amigos.html
           sed -i \
-            -e "s|%%RECEPTION_ADDRESS%%|$RECEPTION_ADDRESS|g" \
+            -e "s|%%RECEPTION_ADDRESS%%|$(esc "$RECEPTION_ADDRESS")|g" \
             evento.ics
 
       - uses: actions/configure-pages@v5
