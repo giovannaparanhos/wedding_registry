@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Presentes · Roberto & Maria Júlia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: #7CB0D2;
+      color: #0a0a0a;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .hero {
+      text-align: center;
+      padding: 3rem 1.5rem 2.5rem;
+      border-bottom: 0.5px solid rgba(0,0,0,0.25);
+    }
+
+    .back-link {
+      display: inline-block;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: opacity 0.15s;
+    }
+    .back-link:hover { opacity: 0.75; }
+
+    .names {
+      font-family: 'Snell Roundhand', 'Pinyon Script', cursive;
+      font-size: 72px;
+      line-height: 1.1;
+      color: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .names .connector {
+      font-family: 'Snell Roundhand', 'Pinyon Script', cursive;
+      font-size: 44px;
+      line-height: 1;
+      margin: -6px 0;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: center;
+      margin: 1.5rem 0 1rem;
+      color: rgba(0,0,0,0.4);
+      font-size: 14px;
+    }
+
+    .divider-line {
+      width: 56px;
+      height: 0.5px;
+      background: rgba(0,0,0,0.35);
+    }
+
+    .page-subtitle {
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: rgba(0,0,0,0.55);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    /* ── Intro ── */
+    .intro {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 0;
+      text-align: center;
+    }
+
+    .intro p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.9;
+      color: #0a0a0a;
+    }
+
+    /* ── Section ── */
+    .section-title {
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: rgba(0,0,0,0.5);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Gift list ── */
+    .gifts-section {
+      padding: 2.5rem 1.5rem;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .gift-list {
+      background: #f5f0ea;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .gift-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 1.25rem;
+      border-bottom: 0.5px solid rgba(0,0,0,0.1);
+    }
+
+    .gift-item:last-child { border-bottom: none; }
+
+    .gift-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #0a0a0a;
+    }
+
+    .gift-tag {
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.4);
+      white-space: nowrap;
+    }
+
+    /* ── Amazon button ── */
+    .amazon-section {
+      text-align: center;
+      padding: 0 1.5rem 2.5rem;
+    }
+
+    .amazon-btn {
+      display: inline-block;
+      background: #0a0a0a;
+      color: #f5f0ea;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 13px 32px;
+      border-radius: 6px;
+      transition: opacity 0.15s;
+    }
+    .amazon-btn:hover { opacity: 0.8; }
+
+    /* ── Address section ── */
+    .address-section {
+      padding: 0 1.5rem 2.5rem;
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .address-card {
+      background: #f5f0ea;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .address-text {
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: #2a2a2a;
+      line-height: 1.9;
+    }
+
+    /* ── PIX section ── */
+    .pix-section {
+      padding: 2.5rem 1.5rem 3rem;
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+      border-top: 0.5px solid rgba(0,0,0,0.2);
+    }
+
+    .pix-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 400;
+      font-style: italic;
+      color: #0a0a0a;
+      margin-bottom: 0.4rem;
+    }
+
+    .pix-sub {
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: rgba(0,0,0,0.6);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .pix-card {
+      background: #f5f0ea;
+      border: none;
+      border-radius: 12px;
+      padding: 1.75rem 1.5rem;
+    }
+
+    .pix-label {
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(0,0,0,0.45);
+      margin-bottom: 10px;
+    }
+
+    .pix-key-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(4,130,121,0.15);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 1rem;
+    }
+
+    .pix-key-value {
+      flex: 1;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: #0a0a0a;
+      text-align: left;
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      flex-shrink: 0;
+      background: #0a0a0a;
+      color: #f5f0ea;
+      border: none;
+      border-radius: 5px;
+      padding: 7px 16px;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .copy-btn:hover { opacity: 0.8; }
+    .copy-btn.copied { background: #048279; color: #fff; }
+
+    .pix-name {
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: rgba(0,0,0,0.55);
+    }
+
+    .pix-note {
+      margin-top: 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(0,0,0,0.5);
+      line-height: 1.7;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      color: rgba(0,0,0,0.4);
+      letter-spacing: 0.1em;
+      border-top: 0.5px solid rgba(0,0,0,0.2);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .names { font-size: 56px; }
+      .names .connector { font-size: 34px; }
+      .gift-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <a class="back-link" href="family.html">← voltar</a>
+    <div class="names">
+      <span>Maria Júlia</span>
+      <span class="connector">&</span>
+      <span>Roberto</span>
+    </div>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span>♡</span>
+      <div class="divider-line"></div>
+    </div>
+    <div class="page-subtitle">Lista de Presentes</div>
+  </div>
+
+  <div class="intro">
+    <p>
+      A sua presença já é o nosso maior presente.<br>
+      Mas, se quiser nos presentear, aqui estão algumas sugestões que ainda faltam em nosso lar.
+    </p>
+  </div>
+
+  <div class="gifts-section">
+    <div class="section-title">Sugestões</div>
+    <div class="gift-list">
+      <div class="gift-item"><span class="gift-name">Batedeira planetária</span><span class="gift-tag">Cozinha</span></div>
+      <div class="gift-item"><span class="gift-name">Processador de alimentos</span><span class="gift-tag">Cozinha</span></div>
+      <div class="gift-item"><span class="gift-name">Panelas de inox</span><span class="gift-tag">Cozinha</span></div>
+      <div class="gift-item"><span class="gift-name">Taças de vinho</span><span class="gift-tag">Cozinha</span></div>
+      <div class="gift-item"><span class="gift-name">Faqueiro completo</span><span class="gift-tag">Cozinha</span></div>
+      <div class="gift-item"><span class="gift-name">Serviço de jantar</span><span class="gift-tag">Cozinha</span></div>
+      <div class="gift-item"><span class="gift-name">Roupa de cama</span><span class="gift-tag">Casa</span></div>
+      <div class="gift-item"><span class="gift-name">Jogo de toalhas</span><span class="gift-tag">Casa</span></div>
+    </div>
+  </div>
+
+  <div class="amazon-section">
+    <a class="amazon-btn" href="https://www.amazon.com.br/hz/wishlist/ls/38Q0QET7KH775?ref_=wl_share" target="_blank" rel="noopener">
+      Ver lista completa na Amazon → 
+    </a>
+  </div>
+
+  <div class="address-section">
+    <div class="section-title">Enviar pelo correio?</div>
+    <div class="address-card">
+      <div class="address-text">%%ADDRESS%%</div>
+    </div>
+  </div>
+
+  <div class="pix-section">
+    <div class="section-title">Preferiu o PIX?</div>
+    <div class="pix-title">Chave PIX</div>
+    <div class="pix-sub">
+      Se preferir presentear via transferência,<br>use a chave abaixo.
+    </div>
+
+    <div class="pix-card">
+      <div class="pix-label">Chave PIX</div>
+      <div class="pix-key-box">
+        <div class="pix-key-value" id="pix-key">%%PIX_KEY%%</div>
+        <button class="copy-btn" id="copy-btn" onclick="copyPix()">Copiar</button>
+      </div>
+      <div class="pix-name">Favorecido: %%PIX_NAME%%</div>
+      <div class="pix-note">
+        Se quiser, mencione o seu presente na descrição da transferência.
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Feito com amor &nbsp;·&nbsp; Maju & Roberto &nbsp;·&nbsp; 12.12.2026</div>
+
+  <script>
+    function copyPix() {
+      const key = document.getElementById('pix-key').textContent.trim();
+      const btn = document.getElementById('copy-btn');
+      navigator.clipboard.writeText(key).then(() => {
+        btn.textContent = 'Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copiar';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>
