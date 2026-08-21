@@ -454,100 +454,22 @@
     <div class="date-location">11 de julho de 2026 &nbsp;·&nbsp; Belo Horizonte</div>
   </div>
 
-  <div class="countdown" id="countdown-grid">
-    <div class="count-card"><div class="count-number" id="days">--</div><div class="count-label">dias</div></div>
-    <div class="count-card"><div class="count-number" id="hours">--</div><div class="count-label">horas</div></div>
-    <div class="count-card"><div class="count-number" id="mins">--</div><div class="count-label">minutos</div></div>
-    <div class="count-card"><div class="count-number" id="secs">--</div><div class="count-label">segundos</div></div>
-  </div>
-
   <div class="section">
     <div class="section-title">Detalhes do evento</div>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="info-card-title">Local</div>
-        <div class="info-card-text">%%NOME_DO_LOCAL%%<br>%%ENDEREÇO%%<br>19h às 00h</div>
-        <a href="%%PARTY_MAPS_URL%%" target="_blank" rel="noopener" class="maps-link">Google Maps →</a>
-      </div>
-      <div class="info-card">
-        <div class="info-card-title">Traje</div>
-        <div class="info-card-text">Club chic — esporte fino + balada </div>
-        <div class="info-card-text"><b>-</b> Não precisa ir de salto, mas se quiser pode</div>
-        <div class="info-card-text"><b>-</b> Micro vestido/saia? Também pode (você conhece a noiva...)</div>
-        <div class="info-card-text"><b>-</b> Ternos são incentivados!</div>
-        <div class="info-card-text"><b>- </b>Pode ir de preto, mas <b>evite o branco e o prata!</b></div>
-        <a href="https://pin.it/11fLOyR3L" target="_blank" rel="noopener" class="maps-link">Ver inspirações no Pinterest →</a>
-      </div>
-      <div class="info-card info-card-full" style="grid-column: span 2;">
-        <div class="info-card-title">Salvar na agenda</div>
-        <div class="info-card-text">Adicione ao seu calendário</div>
-        <div class="cal-buttons">
-          <button class="cal-btn" onclick="addToGoogle()">Google</button>
-          <a class="cal-btn" href="amigos.ics" download>Calendário do iPhone</a>
-        </div>
-        <span id="cal-location" style="display:none">%%NOME_DO_LOCAL%%, %%ENDEREÇO%%</span>
-      </div>
-    </div>
     <div class="after-section">
-      <div class="after-title">E o jogo?</div>
-      <div class="after-text">Se houver jogo do Brasil, teremos transmissão!</div>
+      <div class="after-title">Hoteis</div>
+      <div class="after-text">hotel 1 </b> hotel2 </div>
     </div>
 
     <div class="after-section">
-      <div class="after-title">E o presente?</div>
-      <div class="after-text">Seu presente é sua presença!</div>
+      <div class="after-title">Maquiagem</div>
+      <div class="after-text">lista aqui</div>
     </div>
 
     <div class="after-section">
-      <div class="after-title">E o bar?</div>
-      <div class="after-text">Vamos começar com cerveja por conta da casa! Uma vez que acabar, o bar fica com comanda individual. E teremos bolo!</div>
+      <div class="after-title">Cabelo</div>
+      <div class="after-text">cabeleileila leila</div>
     </div>
-
-    <div class="after-section">
-      <div class="after-title">E o after?</div>
-      <div class="after-text">Vai ter after sim! Em breve mais informações.</div>
-    </div>
-  </div>
-
-  <div class="rsvp-section">
-    <div class="section-title">Confirmação de presença</div>
-    <div class="rsvp-title">Você vai comparecer?</div>
-    <div class="rsvp-sub">Digite seu nome para confirmar</div>
-
-    <div class="rsvp-card">
-
-      <!-- Passo 1: nome -->
-      <div id="a-step-nome" class="rsvp-step active">
-        <div class="rsvp-step-label">Qual é o seu nome?</div>
-        <input id="a-nome" class="rsvp-input" type="text" placeholder="Nome completo" autocomplete="name" />
-        <button class="rsvp-btn-primary" onclick="aAvancar()">Continuar</button>
-      </div>
-
-      <!-- Passo 2: presença -->
-      <div id="a-step-presenca" class="rsvp-step">
-        <div class="rsvp-found" id="a-found"></div>
-        <div class="rsvp-step-label">Você vai comparecer?</div>
-        <div class="rsvp-options">
-          <button class="rsvp-opt-btn yes" onclick="aEscolher('sim')">Sim, estarei lá!</button>
-          <button class="rsvp-opt-btn yes" onclick="aEscolher('sim+1')">Sim, com +1!</button>
-          <button class="rsvp-opt-btn"     onclick="aEscolher('nao')">Não poderei ir</button>
-        </div>
-      </div>
-
-      <!-- Passo 3: nome do +1 -->
-      <div id="a-step-mais-um" class="rsvp-step">
-        <div class="rsvp-step-label">Nome do seu acompanhante?</div>
-        <input id="a-mais-um" class="rsvp-input" type="text" placeholder="Nome do acompanhante" autocomplete="off" />
-        <button class="rsvp-btn-primary" onclick="aSubmeter()">Confirmar</button>
-      </div>
-
-      <!-- Passo 4: obrigado -->
-      <div id="a-step-thanks" class="rsvp-step">
-        <div class="rsvp-thanks" id="a-thanks"></div>
-      </div>
-
-    </div>
-  </div>
 
   <div class="footer">Feito com amor &nbsp;·&nbsp; Roberto & Maria Júlia</div>
 
