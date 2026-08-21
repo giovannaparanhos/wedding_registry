@@ -1,10 +1,10 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Casamento Giovanna & Caio//PT-BR
+PRODID:-//Casamento Maria Júlia & Roberto//PT-BR
 BEGIN:VEVENT
 DTSTART:20260709T103000
 DTEND:20260709T150000
-SUMMARY:Casamento Giovanna & Caio
+SUMMARY:Casamento Maria Júlia & Roberto
 LOCATION:%%RECEPTION_ADDRESS%%
 DESCRIPTION:Venha celebrar conosco!
 END:VEVENT

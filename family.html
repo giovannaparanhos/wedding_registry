@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Giovanna & Caio</title>
+  <title>Maju & Roberto</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
 
     body {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      background: #7CB0D2;
+      background: #e2e3c8;
       color: #0a0a0a;
       min-height: 100vh;
     }
@@ -411,9 +411,9 @@
       </svg>
 
       <div class="names">
-        <span>Giovanna</span>
+        <span>Maju</span>
         <span class="connector">&</span>
-        <span>Caio</span>
+        <span>Roberto</span>
       </div>
     </div>
 
@@ -423,7 +423,7 @@
       <div class="divider-line"></div>
     </div>
 
-    <div class="date-location">09 de julho de 2026 &nbsp;·&nbsp; Belo Horizonte</div>
+    <div class="date-location">12 de dezembro de 2026 &nbsp;·&nbsp; Itaúna</div>
   </div>
 
   <div class="countdown" id="countdown-grid">
@@ -437,8 +437,8 @@
     <div class="section-title">Detalhes do evento</div>
     <div class="info-grid">
       <div class="info-card">
-        <div class="info-card-title">Recepção</div>
-        <div class="info-card-text">%%RECEPTION_ADDRESS%%<br>10h30 às 15h</div>
+        <div class="info-card-title">Cerimônia</div>
+        <div class="info-card-text">%%RECEPTION_ADDRESS%%<br>17h</div>
         <a href="%%RECEPTION_MAPS_URL%%" target="_blank" rel="noopener" class="maps-link">Google Maps →</a>
       </div>
       <div class="info-card">
@@ -447,7 +447,7 @@
       </div>
       <a class="info-card" href="presentes.html">
         <div class="info-card-title">Lista de presentes</div>
-        <div class="info-card-text">Seu presente é sua presença! Sugestões →</div>
+        <div class="info-card-text">Sugestões →</div>
       </a>
       <div class="info-card">
         <div class="info-card-title">Salvar na agenda</div>
@@ -504,15 +504,15 @@
   <div class="info-section">
     <div class="info-section-title">Importante</div>
     <div class="info-section-text">
-      A região é de difícil estacionamento — se puder, dê preferência ao Uber e brinde conosco sem preocupação!<br>
-      Caso prefira ir de carro, há estacionamentos próximos na Rua Levindo Lopes.
+      algum aviso aqui<br>
+      placeholder para informações importantes sobre o evento, como estacionamento, transporte, ou qualquer outra instrução relevante para os convidados.
     </div>
   </div>
 
-  <div class="footer">Feito com amor &nbsp;·&nbsp; Caio & Giovanna &nbsp;·&nbsp; 09.07.2026</div>
+  <div class="footer">Feito com amor &nbsp;·&nbsp; Maju & Roberto &nbsp;·&nbsp; 12.12.2026</div>
 
   <script>
-    const weddingDate = new Date('2026-07-09T10:30:00');
+    const weddingDate = new Date('2026-12-12T17:00:00');
 
     function updateCountdown() {
       const now = new Date();
@@ -561,7 +561,7 @@
       if (opcao === 'sim+1') { fMostrar('f-step-mais-um'); return; }
       fEnviar({ nome: fNome, presenca: opcao, mais_um: '' });
       document.getElementById('f-thanks').textContent = opcao === 'sim'
-        ? 'Que alegria! Te esperamos no dia 09 de julho. 🎉'
+        ? 'Que alegria! Te esperamos no dia 12 de dezembro. 🎉'
         : 'Sentiremos sua falta. Obrigada por avisar!';
       fMostrar('f-step-thanks');
     }
@@ -570,7 +570,7 @@
       const maisUm = document.getElementById('f-mais-um').value.trim();
       fEnviar({ nome: fNome, presenca: 'sim', mais_um: maisUm });
       document.getElementById('f-thanks').textContent =
-        'Que alegria! Esperamos vocês dois no dia 09 de julho. 🎉';
+        'Que alegria! Esperamos vocês dois no dia 12 de dezembro. 🎉';
       fMostrar('f-step-thanks');
     }
 
@@ -589,8 +589,8 @@
     function addToGoogle() {
       const loc = encodeURIComponent(document.getElementById('cal-location').textContent.trim());
       const url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-        + '&text=Casamento+Giovanna+%26+Caio'
-        + '&dates=20260709T103000%2F20260709T150000'
+        + '&text=Casamento+Maju+%26+Roberto'
+        + '&dates=20261212T170000%2F20261212T180000'
         + '&location=' + loc
         + '&details=Venha+celebrar+conosco!';
       window.open(url, '_blank');
