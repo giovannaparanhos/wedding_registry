@@ -42,7 +42,7 @@ jobs:
           sed -i \
             -e "s|%%RECEPTION_ADDRESS%%|$(esc "$RECEPTION_ADDRESS")|g" \
             -e "s|%%RECEPTION_MAPS_URL%%|$(esc "$RECEPTION_MAPS_URL")|g" \
-            family.html
+            index.html
           sed -i \
             -e "s|%%NOME_DO_LOCAL%%|$(esc "$PARTY_NAME")|g" \
             -e "s|%%ENDEREÇO%%|$(esc "$PARTY_ADDRESS")|g" \
