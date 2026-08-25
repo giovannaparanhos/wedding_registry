@@ -7,12 +7,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Alex+Brush&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      background: #f1deb0;
+      background: #f5f1e8;
       color: #1e2a44;
       min-height: 100vh;
     }
@@ -40,19 +42,12 @@
       display: inline-block;
     }
 
-    /* Decorative SVGs */
-    .deco {
-      position: absolute;
-      pointer-events: none;
-    }
-    .deco-heart { top: -8px; left: -44px; width: 28px; opacity: 0.85; }
-    .deco-bow   { top: -12px; right: -52px; width: 42px; opacity: 0.85; }
-    .deco-star  { bottom: -4px; right: -38px; width: 22px; opacity: 0.75; }
-    .deco-spark { bottom: 20px; left: -48px; width: 28px; opacity: 0.7; }
-
     .names {
-      font-family: 'Snell Roundhand', 'Pinyon Script', cursive;
-      font-size: 88px;
+      font-family: 'Cormorant', serif;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-size: 75px;
+      font-weight: 300;
       line-height: 1.1;
       color: #1e2a44;
       display: flex;
@@ -62,8 +57,10 @@
     }
 
     .names .connector {
-      font-family: 'Snell Roundhand', 'Pinyon Script', cursive;
-      font-size: 54px;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-size: 40px;
       line-height: 1;
       margin: -8px 0;
     }
@@ -340,10 +337,12 @@
     }
 
     .after-title {
-      font-family: 'Snell Roundhand', 'Pinyon Script', cursive;
-      font-size: 36px;
+      font-family: 'Cormorant', serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 20px;
       color: #1e2a44;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
     }
 
     .after-text {
@@ -398,16 +397,6 @@
       .footer        { font-size: 13px; }
     }
 
-    /* ── Mobile ── */
-    @media (max-width: 480px) {
-      .names { font-size: 66px; }
-      .names .connector { font-size: 40px; }
-      .deco-heart { left: -28px; }
-      .deco-bow   { right: -34px; }
-      .countdown { gap: 7px; padding: 2rem 1rem; }
-      .info-grid { grid-template-columns: 1fr; }
-      .info-card-full { grid-column: span 1 !important; }
-    }
   </style>
 </head>
 <body>
@@ -416,27 +405,6 @@
     <div class="hero-label">Save the date</div>
 
     <div class="names-block">
-      <!-- Coração -->
-      <svg class="deco deco-heart" viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14 23s-11-7.5-11-14a6 6 0 0 1 11-3.36A6 6 0 0 1 25 9c0 6.5-11 14-11 14z" stroke="#1e2a44" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <!-- Laço -->
-      <svg class="deco deco-bow" viewBox="0 0 48 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M24 14 C20 10 8 4 6 10 C4 16 18 18 24 14Z" stroke="#1e2a44" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <path d="M24 14 C28 10 40 4 42 10 C44 16 30 18 24 14Z" stroke="#1e2a44" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <circle cx="24" cy="14" r="2.5" stroke="#1e2a44" stroke-width="1.2" fill="none"/>
-        <path d="M22 16 C21 20 22 24 24 26" stroke="#1e2a44" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M26 16 C27 20 26 24 24 26" stroke="#1e2a44" stroke-width="1.2" stroke-linecap="round"/>
-      </svg>
-      <!-- Estrela -->
-      <svg class="deco deco-star" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11 1 L12.8 8.2 L20 11 L12.8 13.8 L11 21 L9.2 13.8 L2 11 L9.2 8.2 Z" stroke="#1e2a44" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <!-- Faíscas -->
-      <svg class="deco deco-spark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 6 L7.5 2 L9 6 L13 7.5 L9 9 L7.5 13 L6 9 L2 7.5 Z" stroke="#1e2a44" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M19 17 L20 14.5 L21 17 L23.5 18 L21 19 L20 21.5 L19 19 L16.5 18 Z" stroke="#1e2a44" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
 
       <div class="names">
         <span>Maria Júlia</span>
@@ -451,11 +419,11 @@
       <div class="divider-line"></div>
     </div>
 
-    <div class="date-location">11 de julho de 2026 &nbsp;·&nbsp; Belo Horizonte</div>
+    <div class="date-location">12 de dezembro de 2026 &nbsp;·&nbsp; Itaúna</div>
   </div>
 
   <div class="section">
-    <div class="section-title">Detalhes do evento</div>
+    <div class="section-title">DICAS</div>
     <div class="after-section">
       <div class="after-title">Hoteis</div>
       <div class="after-text">hotel 1 </br> hotel2 </div>
@@ -473,91 +441,7 @@
 
   <div class="footer">Feito com amor &nbsp;·&nbsp; Roberto & Maria Júlia</div>
 
-  <script>
-    const partyDate = new Date('2026-07-11T19:30:00');
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = partyDate - now;
-
-      if (diff <= 0) {
-        ['days','hours','mins','secs'].forEach(id => document.getElementById(id).textContent = '0');
-        return;
-      }
-
-      document.getElementById('days').textContent  = Math.floor(diff / 86400000);
-      document.getElementById('hours').textContent = Math.floor((diff % 86400000) / 3600000);
-      document.getElementById('mins').textContent  = Math.floor((diff % 3600000) / 60000);
-      document.getElementById('secs').textContent  = Math.floor((diff % 60000) / 1000);
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    /* ── RSVP amigos ── */
-    let aNome = '';
-
-    function aMostrar(id) {
-      document.querySelectorAll('.rsvp-step').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
-
-    function aAvancar() {
-      const val = document.getElementById('a-nome').value.trim();
-      if (val.length < 2) { document.getElementById('a-nome').focus(); return; }
-      aNome = val;
-      document.getElementById('a-found').textContent = val;
-      aMostrar('a-step-presenca');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('a-nome').addEventListener('keydown', e => {
-        if (e.key === 'Enter') aAvancar();
-      });
-      document.getElementById('a-mais-um').addEventListener('keydown', e => {
-        if (e.key === 'Enter') aSubmeter();
-      });
-    });
-
-    function aEscolher(opcao) {
-      if (opcao === 'sim+1') { aMostrar('a-step-mais-um'); return; }
-      aEnviar({ nome: aNome, presenca: opcao, mais_um: '' });
-      document.getElementById('a-thanks').textContent = opcao === 'sim'
-        ? 'Que alegria! Te esperamos no dia 11 de julho. 🎉'
-        : 'Sentiremos sua falta. Obrigada por avisar!';
-      aMostrar('a-step-thanks');
-    }
-
-    function aSubmeter() {
-      const maisUm = document.getElementById('a-mais-um').value.trim();
-      aEnviar({ nome: aNome, presenca: 'sim', mais_um: maisUm });
-      document.getElementById('a-thanks').textContent =
-        'Que alegria! Esperamos vocês dois no dia 11 de julho. 🎉';
-      aMostrar('a-step-thanks');
-    }
-
-    async function aEnviar(dados) {
-      const endpoint = 'https://script.google.com/macros/s/AKfycbxs_nQgch66zAfvXAUoWwjGKZIYvdPSkLICPggicbYDEF4pS79jplQXu0cTtkyHGrn0tg/exec';
-      try {
-        await fetch(endpoint, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({ ...dados, pagina: 'amigos' })
-        });
-      } catch (_) {}
-    }
-
-    function addToGoogle() {
-      const loc = encodeURIComponent(document.getElementById('cal-location').textContent.trim());
-      const url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-        + '&text=Casamento+Maria Júlia+%26+Roberto'
-        + '&dates=20260711T190000%2F20260712T000000'
-        + '&location=' + loc
-        + '&details=Venha+celebrar+conosco!';
-      window.open(url, '_blank');
-    }
-  </script>
 
 </body>
 </html>
