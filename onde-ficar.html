@@ -27,6 +27,20 @@
       border-bottom: 0.5px solid rgba(0,0,0,0.25);
     }
 
+    .back-link {
+      display: inline-block;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: opacity 0.15s;
+    }
+    .back-link:hover { opacity: 0.75; }
+
     .hero-label {
       font-family: 'Jost', system-ui, sans-serif;
       font-weight: 300;
@@ -405,8 +419,8 @@
     <div class="hero-label">Save the date</div>
 
     <div class="names-block">
-
-      <div class="names">
+      <a class="back-link" href="index.html">← voltar</a>
+      <div class="names" href="index.html">
         <span>Maria Júlia</span>
         <span class="connector">&</span>
         <span>Roberto</span>
