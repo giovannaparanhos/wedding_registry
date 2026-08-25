@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maju & Roberto</title>
+  <title>Maria Júlia & Roberto</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Pinyon+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
@@ -148,7 +148,7 @@
 
     .info-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 10px;
     }
 
@@ -406,7 +406,7 @@
     <div class="info-grid">
       <div class="info-card">
         <div class="info-card-title">Cerimônia</div>
-        <div class="info-card-text">Igreja Matriz Sant’ana </b>%%RECEPTION_ADDRESS%%<br>17h</div>
+        <div class="info-card-text">Igreja Matriz Sant’ana </br>%%RECEPTION_ADDRESS%%<br>17h30</div>
         <a href="%%RECEPTION_MAPS_URL%%" target="_blank" rel="noopener" class="maps-link">Google Maps →</a>
       </div>
       <div class="info-card">
@@ -480,7 +480,7 @@
   <div class="footer">Feito com amor &nbsp;·&nbsp; Maria Júlia & Roberto &nbsp;·&nbsp; 12.12.2026</div>
 
   <script>
-    const weddingDate = new Date('2026-12-12T17:00:00');
+    const weddingDate = new Date('2026-12-12T17:30:00');
 
     function updateCountdown() {
       const now = new Date();
@@ -558,7 +558,7 @@
       const loc = encodeURIComponent(document.getElementById('cal-location').textContent.trim());
       const url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
         + '&text=Casamento+Maria+Júlia+%26+Roberto'
-        + '&dates=20261212T170000%2F20261212T180000'
+        + '&dates=20261212T173000%2F20261212T183000'
         + '&location=' + loc
         + '&details=Venha+celebrar+conosco!';
       window.open(url, '_blank');
