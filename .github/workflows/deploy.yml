@@ -42,11 +42,11 @@ jobs:
           sed -i \
             -e "s|%%RECEPTION_ADDRESS%%|$(esc "$RECEPTION_ADDRESS")|g" \
             -e "s|%%RECEPTION_MAPS_URL%%|$(esc "$RECEPTION_MAPS_URL")|g" \
+            -e "s|%%ENDEREÇO%%|$(esc "$PARTY_ADDRESS")|g" \
+            -e "s|%%PARTY_MAPS_URL%%|$(esc "$PARTY_MAPS_URL")|g" \
             index.html
           sed -i \
             -e "s|%%NOME_DO_LOCAL%%|$(esc "$PARTY_NAME")|g" \
-            -e "s|%%ENDEREÇO%%|$(esc "$PARTY_ADDRESS")|g" \
-            -e "s|%%PARTY_MAPS_URL%%|$(esc "$PARTY_MAPS_URL")|g" \
             onde-ficar.html
           sed -i \
             -e "s|%%RECEPTION_ADDRESS%%|$(esc "$RECEPTION_ADDRESS")|g" \
