@@ -392,12 +392,12 @@
     <div class="info-grid">
       <div class="info-card">
         <div class="info-card-title">Cerimônia</div>
-        <div class="info-card-text">Igreja Matriz Sant’ana </br>%%RECEPTION_ADDRESS%%<br>17h30</div>
+        <div class="info-card-text">Igreja Matriz Sant’ana </br>%%RECEPTION_ADDRESS%%<br>17h</div>
         <a href="%%RECEPTION_MAPS_URL%%" target="_blank" rel="noopener" class="maps-link">Google Maps →</a>
       </div>
       <div class="info-card">
         <div class="info-card-title">Comemoração</div>
-        <div class="info-card-text">%%PARTY_NAME%%<br>%%PARTY_ADDRESS%%<br>17h30</div>
+        <div class="info-card-text">%%PARTY_NAME%%<br>%%PARTY_ADDRESS%%<br>18h30</div>
         <a href="%%PARTY_MAPS_URL%%" target="_blank" rel="noopener" class="maps-link">Google Maps →</a>
       </div>
       <div class="info-card">
@@ -464,14 +464,14 @@
     <div class="info-section-title">Importante</div>
     <div class="info-section-text">
       <a href="onde-ficar.html">Veja aqui sugestões de onde ficar e se arrumar</a><br>
-      Seja pontual por favorzinho, a cerimônia começa às 17h30. <br>
+      e opções de transporte. <br>
     </div>
   </div>
 
   <div class="footer">Feito com amor &nbsp;·&nbsp; Maria Júlia & Roberto &nbsp;·&nbsp; 12.12.2026</div>
 
   <script>
-    const weddingDate = new Date('2026-12-12T17:30:00');
+    const weddingDate = new Date('2026-12-12T17:00:00');
 
     function updateCountdown() {
       const now = new Date();
@@ -549,7 +549,7 @@
       const loc = encodeURIComponent(document.getElementById('cal-location').textContent.trim());
       const url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
         + '&text=Casamento+Maria+Júlia+%26+Roberto'
-        + '&dates=20261212T173000%2F20261212T183000'
+        + '&dates=20261212T170000%2F20261212T183000'
         + '&location=' + loc
         + '&details=Venha+celebrar+conosco!';
       window.open(url, '_blank');
