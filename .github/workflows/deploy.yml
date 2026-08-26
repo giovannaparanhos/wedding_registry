@@ -37,7 +37,7 @@ jobs:
           sed -i \
             -e "s|%%PIX_KEY%%|$(esc "$PIX_KEY")|g" \
             -e "s|%%PIX_NAME%%|$(esc "$PIX_NAME")|g" \
-            -e "s|%%ADDRESS%%|$(esc "$ADDRESS")|g" \
+            -e "s|%%PIX_ADDRESS%%|$(esc "$PIX_ADDRESS")|g" \
             presentes.html
           sed -i \
             -e "s|%%RECEPTION_ADDRESS%%|$(esc "$RECEPTION_ADDRESS")|g" \
@@ -45,6 +45,7 @@ jobs:
             -e "s|%%PARTY_NAME%%|$(esc "$PARTY_NAME")|g" \
             -e "s|%%PARTY_ADDRESS%%|$(esc "$PARTY_ADDRESS")|g" \
             -e "s|%%PARTY_MAPS_URL%%|$(esc "$PARTY_MAPS_URL")|g" \
+            -e "s|%%ADDRESS%%|$(esc "$ADDRESS")|g" \
             index.html
           sed -i \
             -e "s|%%RECEPTION_ADDRESS%%|$(esc "$RECEPTION_ADDRESS")|g" \
