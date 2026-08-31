@@ -471,7 +471,7 @@
   <div class="rsvp-section">
     <div class="section-title">Confirmação de presença</div>
     <div class="rsvp-title">Você vai comparecer?</div>
-    <div class="rsvp-sub">Digite seu nome para confirmar. A confirmação é obrigatória e individual.</div>
+    <div class="rsvp-sub">Digite seu nome para confirmar</div>
 
     <div class="rsvp-card">
 
@@ -492,7 +492,7 @@
         <div class="rsvp-step-label">Você vai comparecer?</div>
         <div class="rsvp-options">
           <button class="rsvp-opt-btn yes" onclick="fEscolher('sim')">Sim, estarei lá!</button>
-          <button class="rsvp-opt-btn yes" onclick="fEscolher('sim+1')">Sim, com acompanhante!</button>
+          <button class="rsvp-opt-btn yes" onclick="fEscolher('sim+1')">Sim, com +1!</button>
           <button class="rsvp-opt-btn"     onclick="fEscolher('nao')">Não poderei ir</button>
         </div>
       </div>
@@ -500,7 +500,11 @@
       <!-- Passo 3: nome do +1 -->
       <div id="f-step-mais-um" class="rsvp-step">
         <div class="rsvp-step-label">Nome do seu acompanhante?</div>
-        <input id="f-mais-um" class="rsvp-input" type="text" placeholder="Nome do acompanhante" autocomplete="off" />
+        <div class="rsvp-input-wrap">
+          <input id="f-mais-um" class="rsvp-input" type="text" placeholder="Nome do acompanhante" autocomplete="off" />
+          <div id="f-mais-um-suggestions" class="rsvp-suggestions"></div>
+        </div>
+        <div id="f-mais-um-erro" class="rsvp-error">Ops! Este nome não está na lista. Por favor, entre em contato com os noivos.</div>
         <button class="rsvp-btn-primary" onclick="fSubmeter()">Confirmar</button>
       </div>
 
@@ -578,18 +582,18 @@
       document.getElementById(id).classList.add('active');
     }
 
-    function fEsconderErro() {
-      document.getElementById('f-erro').classList.remove('show');
-      document.getElementById('f-nome').classList.remove('error');
+    function fEsconderErro(inputId, erroId) {
+      document.getElementById(erroId).classList.remove('show');
+      document.getElementById(inputId).classList.remove('error');
     }
 
-    function fMostrarErro() {
-      document.getElementById('f-erro').classList.add('show');
-      document.getElementById('f-nome').classList.add('error');
+    function fMostrarErro(inputId, erroId) {
+      document.getElementById(erroId).classList.add('show');
+      document.getElementById(inputId).classList.add('error');
     }
 
-    function fRenderSugestoes(val) {
-      const box = document.getElementById('f-suggestions');
+    function fRenderSugestoes(val, inputId, boxId, erroId) {
+      const box = document.getElementById(boxId);
       fSugestaoAtiva = -1;
 
       const termo = fNormalizar(val);
@@ -608,43 +612,24 @@
 
       box.querySelectorAll('.rsvp-suggestion-item').forEach(item => {
         item.addEventListener('click', () => {
-          document.getElementById('f-nome').value = item.dataset.nome;
+          document.getElementById(inputId).value = item.dataset.nome;
           box.classList.remove('show');
           box.innerHTML = '';
-          fEsconderErro();
+          fEsconderErro(inputId, erroId);
         });
       });
     }
 
-    function fAvancar() {
-      const input = document.getElementById('f-nome');
-      const val = input.value.trim();
-      if (val.length < 2) { input.focus(); return; }
+    function fConfigurarAutocomplete(inputId, boxId, erroId) {
+      const input = document.getElementById(inputId);
+      const box = document.getElementById(boxId);
 
-      const encontrado = fEncontrarNaLista(val);
-      if (!encontrado) {
-        fMostrarErro();
-        return;
-      }
-
-      fEsconderErro();
-      fNome = encontrado; // usa o nome exatamente como está na lista
-      document.getElementById('f-found').textContent = fNome;
-      fMostrar('f-step-presenca');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      fCarregarLista();
-
-      const inputNome = document.getElementById('f-nome');
-      const box = document.getElementById('f-suggestions');
-
-      inputNome.addEventListener('input', () => {
-        fEsconderErro();
-        fRenderSugestoes(inputNome.value);
+      input.addEventListener('input', () => {
+        fEsconderErro(inputId, erroId);
+        fRenderSugestoes(input.value, inputId, boxId, erroId);
       });
 
-      inputNome.addEventListener('keydown', e => {
+      input.addEventListener('keydown', e => {
         const items = box.querySelectorAll('.rsvp-suggestion-item');
         if (e.key === 'ArrowDown' && items.length) {
           e.preventDefault();
@@ -657,25 +642,47 @@
         } else if (e.key === 'Enter') {
           if (fSugestaoAtiva >= 0 && items[fSugestaoAtiva]) {
             e.preventDefault();
-            inputNome.value = items[fSugestaoAtiva].dataset.nome;
+            input.value = items[fSugestaoAtiva].dataset.nome;
             box.classList.remove('show');
             box.innerHTML = '';
-            fEsconderErro();
+            fEsconderErro(inputId, erroId);
           } else {
-            fAvancar();
+            input.dispatchEvent(new Event('rsvp-enter'));
           }
         }
       });
 
+      const wrap = input.closest('.rsvp-input-wrap');
       document.addEventListener('click', e => {
-        if (!e.target.closest('.rsvp-input-wrap')) {
-          box.classList.remove('show');
-        }
+        if (!wrap.contains(e.target)) box.classList.remove('show');
       });
+    }
 
-      document.getElementById('f-mais-um').addEventListener('keydown', e => {
-        if (e.key === 'Enter') fSubmeter();
-      });
+    function fAvancar() {
+      const input = document.getElementById('f-nome');
+      const val = input.value.trim();
+      if (val.length < 2) { input.focus(); return; }
+
+      const encontrado = fEncontrarNaLista(val);
+      if (!encontrado) {
+        fMostrarErro('f-nome', 'f-erro');
+        return;
+      }
+
+      fEsconderErro('f-nome', 'f-erro');
+      fNome = encontrado; // usa o nome exatamente como está na lista
+      document.getElementById('f-found').textContent = fNome;
+      fMostrar('f-step-presenca');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      fCarregarLista();
+
+      fConfigurarAutocomplete('f-nome', 'f-suggestions', 'f-erro');
+      document.getElementById('f-nome').addEventListener('rsvp-enter', fAvancar);
+
+      fConfigurarAutocomplete('f-mais-um', 'f-mais-um-suggestions', 'f-mais-um-erro');
+      document.getElementById('f-mais-um').addEventListener('rsvp-enter', fSubmeter);
     });
 
     function fEscolher(opcao) {
@@ -688,8 +695,18 @@
     }
 
     function fSubmeter() {
-      const maisUm = document.getElementById('f-mais-um').value.trim();
-      fEnviar({ nome: fNome, presenca: 'sim', mais_um: maisUm });
+      const input = document.getElementById('f-mais-um');
+      const val = input.value.trim();
+      if (val.length < 2) { input.focus(); return; }
+
+      const encontrado = fEncontrarNaLista(val);
+      if (!encontrado) {
+        fMostrarErro('f-mais-um', 'f-mais-um-erro');
+        return;
+      }
+
+      fEsconderErro('f-mais-um', 'f-mais-um-erro');
+      fEnviar({ nome: fNome, presenca: 'sim', mais_um: encontrado });
       document.getElementById('f-thanks').textContent =
         'Que alegria! Esperamos vocês dois no dia 12 de dezembro. 🎉';
       fMostrar('f-step-thanks');
