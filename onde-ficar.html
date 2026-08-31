@@ -203,116 +203,47 @@
       color: #2a2a2a;
       line-height: 1.7;
     }
-
-    /* ── RSVP ── */
-    .rsvp-section {
-      padding: 2.5rem 1.5rem 3rem;
-      text-align: center;
-      max-width: 480px;
+    /* ── Gift list ── */
+    .gifts-section {
+      padding: 2.5rem 1.5rem;
+      max-width: 520px;
       margin: 0 auto;
     }
 
-    .rsvp-title {
+    .gift-list {
+      background: #f5f0ea;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .gift-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 1.25rem;
+      border-bottom: 0.5px solid rgba(0,0,0,0.1);
+    }
+
+    .gift-item:last-child { border-bottom: none; }
+
+    .gift-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 26px;
+      font-size: 17px;
       font-weight: 400;
-      font-style: italic;
       color: #1e2a44;
-      margin-bottom: 0.4rem;
     }
 
-    .rsvp-sub {
+    .gift-tag {
       font-family: 'Jost', system-ui, sans-serif;
       font-weight: 300;
-      font-size: 12px;
-      color: rgba(0,0,0,0.6);
-      margin-bottom: 1.75rem;
-      letter-spacing: 0.04em;
-    }
-
-    .rsvp-card {
-      background: #EDE6F5;
-      border-radius: 14px;
-      padding: 1.75rem 1.5rem;
-      text-align: left;
-    }
-
-    .rsvp-input {
-      width: 100%;
-      font-family: 'Jost', system-ui, sans-serif;
-      font-weight: 300;
-      font-size: 14px;
-      padding: 11px 14px;
-      border: 0.5px solid rgba(0,0,0,0.2);
-      border-radius: 8px;
-      background: #fff;
-      color: #1e2a44;
-      outline: none;
-      transition: border-color 0.15s;
-      margin-bottom: 10px;
-    }
-    .rsvp-input:focus { border-color: rgba(0,0,0,0.5); }
-
-    .rsvp-btn-primary {
-      width: 100%;
-      font-family: 'Jost', system-ui, sans-serif;
-      font-weight: 300;
-      font-size: 12px;
+      font-size: 10px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      background: #1e2a44;
-      color: #f5f0ea;
-      border: none;
-      border-radius: 8px;
-      padding: 11px;
-      cursor: pointer;
-      transition: opacity 0.15s;
+      color: rgba(0,0,0,0.4);
+      white-space: nowrap;
     }
-    .rsvp-btn-primary:hover { opacity: 0.8; }
-
-    .rsvp-step { display: none; }
-    .rsvp-step.active { display: block; }
-
-    .rsvp-step-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 19px;
-      font-style: italic;
-      color: #1e2a44;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .rsvp-found {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      font-style: italic;
-      color: rgba(0,0,0,0.45);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .rsvp-options {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .rsvp-opt-btn {
-      font-family: 'Jost', system-ui, sans-serif;
-      font-weight: 300;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      border: 0.5px solid rgba(0,0,0,0.22);
-      border-radius: 8px;
-      padding: 12px;
-      cursor: pointer;
-      background: transparent;
-      transition: background 0.15s, border-color 0.15s;
-      text-align: center;
-    }
-    .rsvp-opt-btn:hover { background: rgba(0,0,0,0.05); }
-    .rsvp-opt-btn.yes:hover { background: #1e2a44; color: #f5f0ea; border-color: #1e2a44; }
-
+    /* other sections */
     .nota {
       margin-top: 1.25rem;
       font-family: 'Cormorant Garamond', serif;
@@ -419,25 +350,40 @@
       <div class="after-title">Hotéis</div>
       <div class="after-text">
         Por favor, reserve com antecedência, a data é disputada.<br>
-        <a href="https://www.booking.com/Share-pl55V0r" target="_blank">Ibis Styles (Centro)</a> - voucher XXX de X% de desconto.</br>
+        <a href="https://wa.me/5537999048409" target="_blank">Ibis Styles (Centro)</a> - 10% de desconto, comunique que é convidado no momento da reserva</br>
+        <a href="https://wa.me/5537998440065" target="_blank">Hotel Lago do Sol (Barragem)</a> - condições especiais, comunique que é convidado do casamento no momento da reserva<br>
         <a href="http://www.grandehotelitauna.com.br/site/" target="_blank">Grande Hotel (Centro)</a><br>
-        <a href="http://www.grandehotelitauna.com.br/site/" target="_blank">Granja Glória (Zona Rural)</a><br>
-        <a href="https://www.booking.com/Share-DiC3Rly" target="_blank">Hotel Lago do Sol (Barragem, all-inclusive)</a>
+        <a href="https://www.granjagloria.com.br/index.html" target="_blank">Hotel Fazenda Granja Glória (Zona Rural)</a><br>
       </div>
     </div>
 
     <div class="after-section">
       <div class="after-title">Transporte</div>
-      <div class="after-text">Fulaninho da van - (37) 99999-9999<br>
-      zé motorista - (37) 99999-9999</div>
+      <div class="after-text">em breve</div>
     </div>
 
-
-    <div class="after-section">
-      <div class="after-title">Cabelo & Maquiagem</div>
-      <div class="after-text">lista aqui<br>
-      cabeleileila leila</div>
+<div class="after-section">
+      <div class="after-title">Beleza</div>
+    <div class="gifts-section">
+    <div class="gift-list">
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/laapenteados" target="_blank">@laapenteados</a></span><span class="gift-tag">Cabelo</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/edsonvictorhair" target="_blank">@edsonvictorhair</a></span><span class="gift-tag">Cabelo</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/espacotalitabatista" target="_blank">@espacotalitabatista</a></span><span class="gift-tag">Cabelo</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/ajulianaantunes" target="_blank">@ajulianaantunes</a></span><span class="gift-tag">Cabelo</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/alessandrasantana207" target="_blank">@alessandrasantana207</a></span><span class="gift-tag">Cabelo</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/ciara.makeup" target="_blank">@ciara.makeup</a></span><span class="gift-tag">Maquiagem</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/laisaalves.beauty" target="_blank">@laisaalves.beauty</a></span><span class="gift-tag">Maquiagem</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/fcoutinhomakeup" target="_blank">@fcoutinhomakeup</a></span><span class="gift-tag">Maquiagem</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/marinagoncalves.makeup" target="_blank">@marinagoncalves.makeup</a></span><span class="gift-tag">Maquiagem</span></div>
+      <div class="gift-item"><span class="gift-name"><a href=" https://www.instagram.com/cleniafranca" target="_blank">@cleniafranca</a></span><span class="gift-tag">Cabelo e Maquiagem</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/studiobiamakeupp" target="_blank">@studiobiamakeupp</a></span><span class="gift-tag">Cabelo e Maquiagem</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/salaoangelarocha" target="_blank">@salaoangelarocha</a></span><span class="gift-tag">Salão</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/salaovaleria" target="_blank">@salaovaleria</a></span><span class="gift-tag">Salão</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/espacolauralima" target="_blank">@espacolauralima</a></span><span class="gift-tag">Salão</span></div>
+      <div class="gift-item"><span class="gift-name"><a href="https://www.instagram.com/azullimaoitauna" target="_blank">@azullimaoitauna</a></span><span class="gift-tag">Salão</span></div>
+    
     </div>
+  </div>
   </div>
   <div class="footer">Feito com amor &nbsp;·&nbsp; Maria Júlia & Roberto &nbsp;·&nbsp; 12.12.2026</div>
 
