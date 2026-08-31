@@ -255,6 +255,53 @@
       transition: border-color 0.15s;
     }
     .rsvp-input:focus { border-color: rgba(0,0,0,0.5); }
+    .rsvp-input.error { border-color: #a33; }
+
+    .rsvp-input-wrap {
+      position: relative;
+    }
+
+    .rsvp-suggestions {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 0.5px solid rgba(0,0,0,0.2);
+      border-radius: 8px;
+      max-height: 190px;
+      overflow-y: auto;
+      z-index: 10;
+      text-align: left;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    }
+    .rsvp-suggestions.show { display: block; }
+
+    .rsvp-suggestion-item {
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      color: #1e2a44;
+      padding: 9px 14px;
+      cursor: pointer;
+    }
+    .rsvp-suggestion-item:hover,
+    .rsvp-suggestion-item.active {
+      background: rgba(30,42,68,0.08);
+    }
+
+    .rsvp-error {
+      display: none;
+      font-family: 'Jost', system-ui, sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: #a33;
+      text-align: left;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .rsvp-error.show { display: block; }
 
     .rsvp-btn-primary {
       width: 100%;
@@ -431,7 +478,11 @@
       <!-- Passo 1: nome -->
       <div id="f-step-nome" class="rsvp-step active">
         <div class="rsvp-step-label">Qual é o seu nome?</div>
-        <input id="f-nome" class="rsvp-input" type="text" placeholder="Nome completo" autocomplete="name" />
+        <div class="rsvp-input-wrap">
+          <input id="f-nome" class="rsvp-input" type="text" placeholder="Nome completo" autocomplete="off" />
+          <div id="f-suggestions" class="rsvp-suggestions"></div>
+        </div>
+        <div id="f-erro" class="rsvp-error">Ops! Este nome não está na lista. Por favor, entre em contato com os noivos.</div>
         <button class="rsvp-btn-primary" onclick="fAvancar()">Continuar</button>
       </div>
 
@@ -494,24 +545,134 @@
 
     /* ── RSVP family ── */
     let fNome = '';
+    let fListaConvidados = [];   // lista carregada do Google Sheets
+    let fSugestaoAtiva = -1;
+
+    const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxs_nQgch66zAfvXAUoWwjGKZIYvdPSkLICPggicbYDEF4pS79jplQXu0cTtkyHGrn0tg/exec';
+
+    function fNormalizar(str) {
+      return str
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // remove acentos
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, ' ');
+    }
+
+    async function fCarregarLista() {
+      try {
+        const resp = await fetch(RSVP_ENDPOINT + '?lista=familia', { method: 'GET' });
+        const data = await resp.json();
+        if (Array.isArray(data)) fListaConvidados = data.filter(n => n && n.toString().trim() !== '');
+      } catch (err) {
+        console.warn('Não foi possível carregar a lista de convidados:', err);
+      }
+    }
+
+    function fEncontrarNaLista(val) {
+      const alvo = fNormalizar(val);
+      return fListaConvidados.find(n => fNormalizar(n) === alvo) || null;
+    }
 
     function fMostrar(id) {
       document.querySelectorAll('.rsvp-step').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
 
+    function fEsconderErro() {
+      document.getElementById('f-erro').classList.remove('show');
+      document.getElementById('f-nome').classList.remove('error');
+    }
+
+    function fMostrarErro() {
+      document.getElementById('f-erro').classList.add('show');
+      document.getElementById('f-nome').classList.add('error');
+    }
+
+    function fRenderSugestoes(val) {
+      const box = document.getElementById('f-suggestions');
+      fSugestaoAtiva = -1;
+
+      const termo = fNormalizar(val);
+      if (!termo) { box.classList.remove('show'); box.innerHTML = ''; return; }
+
+      const matches = fListaConvidados
+        .filter(n => fNormalizar(n).includes(termo))
+        .slice(0, 8);
+
+      if (matches.length === 0) { box.classList.remove('show'); box.innerHTML = ''; return; }
+
+      box.innerHTML = matches.map(n =>
+        `<div class="rsvp-suggestion-item" data-nome="${n.replace(/"/g, '&quot;')}">${n}</div>`
+      ).join('');
+      box.classList.add('show');
+
+      box.querySelectorAll('.rsvp-suggestion-item').forEach(item => {
+        item.addEventListener('click', () => {
+          document.getElementById('f-nome').value = item.dataset.nome;
+          box.classList.remove('show');
+          box.innerHTML = '';
+          fEsconderErro();
+        });
+      });
+    }
+
     function fAvancar() {
-      const val = document.getElementById('f-nome').value.trim();
-      if (val.length < 2) { document.getElementById('f-nome').focus(); return; }
-      fNome = val;
-      document.getElementById('f-found').textContent = val;
+      const input = document.getElementById('f-nome');
+      const val = input.value.trim();
+      if (val.length < 2) { input.focus(); return; }
+
+      const encontrado = fEncontrarNaLista(val);
+      if (!encontrado) {
+        fMostrarErro();
+        return;
+      }
+
+      fEsconderErro();
+      fNome = encontrado; // usa o nome exatamente como está na lista
+      document.getElementById('f-found').textContent = fNome;
       fMostrar('f-step-presenca');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('f-nome').addEventListener('keydown', e => {
-        if (e.key === 'Enter') fAvancar();
+      fCarregarLista();
+
+      const inputNome = document.getElementById('f-nome');
+      const box = document.getElementById('f-suggestions');
+
+      inputNome.addEventListener('input', () => {
+        fEsconderErro();
+        fRenderSugestoes(inputNome.value);
       });
+
+      inputNome.addEventListener('keydown', e => {
+        const items = box.querySelectorAll('.rsvp-suggestion-item');
+        if (e.key === 'ArrowDown' && items.length) {
+          e.preventDefault();
+          fSugestaoAtiva = Math.min(fSugestaoAtiva + 1, items.length - 1);
+          items.forEach((it, i) => it.classList.toggle('active', i === fSugestaoAtiva));
+        } else if (e.key === 'ArrowUp' && items.length) {
+          e.preventDefault();
+          fSugestaoAtiva = Math.max(fSugestaoAtiva - 1, 0);
+          items.forEach((it, i) => it.classList.toggle('active', i === fSugestaoAtiva));
+        } else if (e.key === 'Enter') {
+          if (fSugestaoAtiva >= 0 && items[fSugestaoAtiva]) {
+            e.preventDefault();
+            inputNome.value = items[fSugestaoAtiva].dataset.nome;
+            box.classList.remove('show');
+            box.innerHTML = '';
+            fEsconderErro();
+          } else {
+            fAvancar();
+          }
+        }
+      });
+
+      document.addEventListener('click', e => {
+        if (!e.target.closest('.rsvp-input-wrap')) {
+          box.classList.remove('show');
+        }
+      });
+
       document.getElementById('f-mais-um').addEventListener('keydown', e => {
         if (e.key === 'Enter') fSubmeter();
       });
@@ -535,9 +696,8 @@
     }
 
     async function fEnviar(dados) {
-      const endpoint = 'https://script.google.com/macros/s/AKfycbxs_nQgch66zAfvXAUoWwjGKZIYvdPSkLICPggicbYDEF4pS79jplQXu0cTtkyHGrn0tg/exec';
       try {
-        await fetch(endpoint, {
+        await fetch(RSVP_ENDPOINT, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain' },
