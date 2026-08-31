@@ -26,6 +26,7 @@ jobs:
         env:
           PIX_KEY: ${{ secrets.PIX_KEY }}
           PIX_NAME: ${{ secrets.PIX_NAME }}
+          PIX_ADDRESS: ${{ secrets.PIX_ADDRESS }}
           ADDRESS: ${{ secrets.ADDRESS }}
           RECEPTION_ADDRESS: ${{ secrets.RECEPTION_ADDRESS }}
           RECEPTION_MAPS_URL: ${{ secrets.RECEPTION_MAPS_URL }}
